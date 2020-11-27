@@ -15,7 +15,7 @@ int Stink::getCardsPerCoin(int coints)
 
 string Stink::getName()
 {
-  return "stink";
+  return "Stink";
 };
 
 void Stink::print(ostream &out){
