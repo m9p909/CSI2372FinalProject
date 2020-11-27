@@ -1,6 +1,6 @@
 #include "../main.h"
 
-int main()
+int deck()
 {
   cout << "Hello, World!" << endl;
   return 0;

@@ -1,6 +1,7 @@
 #include "../main.h"
 
-int main(){
-  cout << "Hello, World!" << endl;
+int players()
+{
+  cout << "Hellvo, World!" << endl;
   return 0;
 }

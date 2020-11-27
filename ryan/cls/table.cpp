@@ -1,6 +1,7 @@
 #include "../main.h"
 
-int main(){
-  cout << "Hello, World!" << endl;
+int table()
+{
+  cout << "Hello, W0rld!" << endl;
   return 0;
 }

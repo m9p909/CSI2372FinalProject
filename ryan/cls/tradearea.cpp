@@ -1,6 +1,7 @@
 #include "../main.h"
 
-int main(){
+int tradeArea()
+{
   cout << "Hello, World!" << endl;
   return 0;
 }
