@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -31,3 +32,6 @@ using namespace std;
  */
 
 int hello();
+int copyrightMessage();
+int gameStartMessage();
+int promptEnterToContinue();

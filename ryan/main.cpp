@@ -2,6 +2,7 @@
 
 int main()
 {
-  hello();
+  copyrightMessage();
+  gameStartMessage();
   return 0;
 }

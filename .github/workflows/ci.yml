@@ -16,7 +16,7 @@ jobs:
         run: |
           cd ryan
           echo "Making the game..."
-          make
+          make game
           echo "Making the tests..."
-          make test.exe
+          make test
           echo "TODO: Run Tests..."

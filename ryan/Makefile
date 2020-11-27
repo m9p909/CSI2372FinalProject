@@ -1,7 +1,7 @@
 # CSI2372A Fall 2020 - Final Project Makefile
 
-# Running 'make' builds the game executable.
-.PHONY: game 
+# Running 'make' builds the game and test executables.
+.PHONY: all 
 
 all: game.exe test.exe
 
