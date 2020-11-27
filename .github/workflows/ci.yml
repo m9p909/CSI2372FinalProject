@@ -15,4 +15,8 @@ jobs:
       - name: "Make Ryan's Assignment Copy"
         run: |
           cd ryan
+          echo "Making the game..."
           make
+          echo "Making the tests..."
+          make test.exe
+          echo "TODO: Run Tests..."
