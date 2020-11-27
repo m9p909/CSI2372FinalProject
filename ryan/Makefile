@@ -2,7 +2,8 @@
 
 .PHONY: all
 
-all: main.exe
+all: game.exe
 
-main.exe: main.cpp main.h
-	g++ -Wall -o main.exe cls/card.cpp main.cpp
+game.exe: main.cpp main.h
+	g++ -Wall -o game.exe \
+		util/utils.cpp cls/card.cpp main.cpp

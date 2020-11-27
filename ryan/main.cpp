@@ -2,7 +2,6 @@
 
 int main()
 {
-  cout << "Hello, World!" << endl;
-  card();
+  hello();
   return 0;
 }
