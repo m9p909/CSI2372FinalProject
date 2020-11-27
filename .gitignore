@@ -2,14 +2,8 @@
 # ====================
 
 # Build Output (Ryan)
-
-main.exe
-main.o
-
-# VS Code
-.vscode/
-settings.json
-
+game.exe
+test.exe
 
 
 
@@ -134,12 +128,7 @@ tags
 # Github VS Code Gitignore
 # ========================
 
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
+.vscode/
 
 # Local History for Visual Studio Code
 .history/
