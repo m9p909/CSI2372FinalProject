@@ -1,0 +1,20 @@
+name: CI 
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install C++ Dependencies
+      run: sudo apt-get install g++
+
+    - name: "Make Ryan's Assignment Copy"
+      run: |
+        cd ryan
+        make .
