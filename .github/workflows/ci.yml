@@ -12,11 +12,12 @@ jobs:
       - name: Install C++ Dependencies
         run: sudo apt-get install g++
 
-      - name: "Make Ryan's Assignment Copy"
+      - name: "[Ryan] Build Assignment Executables"
         run: |
           cd ryan
-          echo "Making the game..."
-          make game
-          echo "Making the tests..."
-          make test
-          echo "TODO: Run Tests..."
+          make
+      
+      - name: "[Ryan] Run Unit Tests (Doctest)"
+        run: |
+          cd ryan
+          ./test.exe
