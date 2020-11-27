@@ -6,6 +6,10 @@
 main.exe
 main.o
 
+# VS Code
+.vscode/
+settings.json
+
 
 
 
