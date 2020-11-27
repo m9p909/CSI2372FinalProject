@@ -15,4 +15,4 @@ jobs:
       - name: "Make Ryan's Assignment Copy"
         run: |
           cd ryan
-          make .
+          make
