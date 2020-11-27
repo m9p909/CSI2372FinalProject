@@ -1,9 +1,3 @@
-#include <cstdlib>
-#include <iostream>
-#include <limits>
-
-using namespace std;
-
 /**
  * source file: main.h
  * ====================================
@@ -18,12 +12,111 @@ using namespace std;
  *  - Jack Clarke  0000000 
  */
 
+// Ensure this header is only defined once.
+#ifndef MAINPROG
+#define MAINPROG
+
+// Include libraries for all C++ files.
+#include <cstdlib>
+#include <iostream>
+#include <limits>
+
+// Always use the standard namespace.
+using namespace std;
+
 /**
  * Class Definitions
  * =================
  * Classes corresponding to the game components
  * provided in the program description.
  */
+class Card
+{
+public:
+  // Pure Virtual Functions:
+  virtual int getCardsPerCoin(int coints) = 0;
+  virtual string getName() = 0;
+  virtual void print(ostream &out) = 0;
+};
+
+class Deck;
+class DiscardPile;
+class Chain;
+class Table;
+class TradeArea;
+class Coins;
+class Hand;
+class Players;
+
+/**
+ * Class Implementation Definitions
+ * =================
+ * Classes corresponding to the game components
+ * provided in the program description.
+ */
+class Blue : public Card
+{
+public:
+  int getCardsPerCoin(int coints);
+  string getName();
+  void print(ostream &out);
+};
+
+class Chili : public Card
+{
+public:
+  int getCardsPerCoin(int coints);
+  string getName();
+  void print(ostream &out);
+};
+
+class Stink : public Card
+{
+public:
+  int getCardsPerCoin(int coints);
+  string getName();
+  void print(ostream &out);
+};
+
+class Green : public Card
+{
+public:
+  int getCardsPerCoin(int coints);
+  string getName();
+  void print(ostream &out);
+};
+
+class Soy : public Card
+{
+public:
+  int getCardsPerCoin(int coints);
+  string getName();
+  void print(ostream &out);
+};
+
+class Black : public Card
+{
+public:
+  int getCardsPerCoin(int coints);
+  string getName();
+  void print(ostream &out);
+};
+
+class Red : public Card
+{
+public:
+  int getCardsPerCoin(int coints);
+  string getName();
+  void print(ostream &out);
+};
+
+class Garden : public Card
+{
+public:
+  int getCardsPerCoin(int coints);
+  string getName();
+  void print(ostream &out);
+};
 
 /**
  * Function Definitions
@@ -35,3 +128,6 @@ int hello();
 int copyrightMessage();
 int gameStartMessage();
 int promptEnterToContinue();
+
+// End definition for MAINPROG, the whole program.
+#endif

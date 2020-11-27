@@ -39,8 +39,10 @@ int copyrightMessage()
  */
 int promptEnterToContinue()
 {
-  cout << "~ Please press ENTER to continue...\n";
+  cout << "~ Please press ENTER to continue...";
   // TODO: Uncomment when ready to submit project, recomment for dev.
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  cout << " -> SKIP! Enable in utils.cpp" << endl;
+  cout << endl;
   return 0;
 }
