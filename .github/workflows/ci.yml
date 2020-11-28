@@ -1,0 +1,37 @@
+name: CI
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install C++ Dependencies
+        run: sudo apt-get install g++
+
+      - name: "[Ryan] Build Assignment Executable"
+        run: |
+          cd ryan
+          make game
+  
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install C++ Dependencies
+        run: sudo apt-get install g++
+
+      - name: "[Ryan] Build Unit Testing Executable"
+        run: |
+          cd ryan
+          make test
+      
+      - name: "[Ryan] Run Unit Tests (Doctest)"
+        run: |
+          cd ryan
+          ./test.exe
