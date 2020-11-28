@@ -1,6 +1,6 @@
+#include "../../globalHeader.h"
 
-class Black : public Card {
-  int getCardsPerCoin(int coins) {
+int Black::getCardsPerCoin(int coins) {
     if (coins == 0) {
       return 0;
     } else if (coins == 1) {
@@ -16,7 +16,6 @@ class Black : public Card {
       return -1;
    
   }
-  string getName() { return "Black"; }
+  string Black::getName() { return "Black"; }
 
-  void print(ostream &out) { out << "b"; }
-};
+  void Black::print(ostream &out) { out << "b"; }
