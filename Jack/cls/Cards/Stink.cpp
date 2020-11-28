@@ -1,4 +1,4 @@
-#include "../../globalHeader.h"
+#include "../../main.h"
 
 int Stink::getCardsPerCoin(int coins) {
   if (coins == 0) {

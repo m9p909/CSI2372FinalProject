@@ -1,4 +1,4 @@
-#include "../../globalHeader.h"
+#include "../../main.h"
 
 int Soy::getCardsPerCoin(int coins) {
   if (coins == 0) {

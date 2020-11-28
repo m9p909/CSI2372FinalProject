@@ -1,4 +1,4 @@
-#include "../../globalHeader.h"
+#include "../../main.h"
 
 int Black::getCardsPerCoin(int coins) {
     if (coins == 0) {
