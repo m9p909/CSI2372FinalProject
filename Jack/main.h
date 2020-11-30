@@ -18,6 +18,7 @@
 
 // Include libraries for all C++ files.
 #include <cstdlib>
+#include <exception>
 #include <iostream>
 #include <limits>
 
@@ -42,12 +43,8 @@ public:
   virtual void print(ostream &out) = 0;
 };
 
-
-class Table;
 class TradeArea;
 class Coins;
-class Hand;
-class Players;
 
 /**
  * Class Implementation Definitions
@@ -58,26 +55,28 @@ class Players;
 
 class CardFactory {
   vector<Card *> deck;
-  static CardFactory* factory;
-  
-  private:
-  
-  CardFactory();
-  
-  public:
+  static CardFactory *factory;
 
-    static CardFactory *getFactory();
-    vector<Card *> getDeck();
+private:
+  CardFactory();
+
+public:
+  static CardFactory *getFactory();
+  vector<Card *> getDeck();
 };
 
 class Chain_Base {
-
 public:
   Chain_Base(istream &, const CardFactory *);
+  
   virtual Chain_Base &operator+=(Card *card);
   virtual int sell();
+  virtual void print(ostream &out) const;
+  
   friend ostream &operator<<(ostream &out, const Chain_Base &chain);
 };
+
+
 
 class Deck : public vector<Card *> {
   istream *stream;
@@ -88,7 +87,7 @@ public:
   friend ostream &operator<<(ostream &out, const Deck &chain);
 };
 
-class DiscardPile : public vector<Card*> {
+class DiscardPile : public vector<Card *> {
   istream *stream;
   const CardFactory *factory;
   DiscardPile(istream &, const CardFactory *);
@@ -102,11 +101,70 @@ template <class T> class Chain : public Chain_Base {
   istream *stream;
   T *card_example;
   vector<T *> chainV;
+  void print(ostream &out) const;
   Chain(istream &, const CardFactory *);
-  Chain &operator+=(Card *card);
+  Chain &operator+=(T *card);
   int sell();
   friend ostream &operator<<(ostream &out, const Chain &chain);
 };
+
+
+
+class Hand {
+public:
+  vector<Card *> cards;
+  Hand(istream &, const CardFactory *);
+  Hand &operator+=(Card *);
+  Card *play();
+  Card *top();
+  Card *operator[](int);
+  friend ostream &operator<<(ostream &out, const Hand &hand);
+};
+
+class Player {
+  string playerName;
+  int numCoins;
+  vector<Chain_Base> chains;
+  int numChains = 2;
+  Hand *hand;
+
+public:
+  Player(std::string &);
+  Player(istream &, const CardFactory *);
+  string getName();
+  int getNumCoins();
+  Player &operator+=(int);
+  int getMaxNumChains();
+  int getNumChains();
+  Chain_Base &operator[](int i);
+  void buyThirdChain();
+  void printHand(std::ostream &, bool);
+  friend ostream &operator<<(ostream &out, const Player &player);
+};
+
+class TradeArea {
+  vector<Card *> cards;
+  TradeArea(istream &, const CardFactory *);
+  TradeArea &operator+=(Card *);
+  bool legal(Card *);
+  Card *trade(string);
+  int numCards();
+  friend ostream &operator<<(ostream &out, const TradeArea &area);
+};
+
+class Table {
+  Player *player1;
+  Player *player2;
+  Deck *deck;
+  DiscardPile *discardPile;
+  // TradeArea tradeArea;
+  Table(istream &, const CardFactory *);
+  bool win(std::string &);
+  void printHand(bool);
+  friend ostream &operator<<(ostream &out, const Table &table);
+};
+
+class NotEnoughCoins : public exception {};
 
 class Blue : public Card {
   istream *stream;
@@ -121,7 +179,7 @@ class Chili : public Card {
   istream *stream;
 
 public:
-  int getCardsPerCoin(int );
+  int getCardsPerCoin(int);
   string getName();
   void print(ostream &out);
 };
@@ -130,7 +188,7 @@ class Stink : public Card {
   istream *stream;
 
 public:
-  int getCardsPerCoin(int );
+  int getCardsPerCoin(int);
   string getName();
   void print(ostream &out);
 };
@@ -139,7 +197,7 @@ class Green : public Card {
   istream *stream;
 
 public:
-  int getCardsPerCoin(int );
+  int getCardsPerCoin(int);
   string getName();
   void print(ostream &out);
 };
@@ -148,7 +206,7 @@ class Soy : public Card {
   istream *stream;
 
 public:
-  int getCardsPerCoin(int );
+  int getCardsPerCoin(int);
   string getName();
   void print(ostream &out);
 };
@@ -157,7 +215,7 @@ class Black : public Card {
   istream *stream;
 
 public:
-  int getCardsPerCoin(int );
+  int getCardsPerCoin(int);
   string getName();
   void print(ostream &out);
 };
@@ -166,7 +224,7 @@ class Red : public Card {
   istream *stream;
 
 public:
-  int getCardsPerCoin(int );
+  int getCardsPerCoin(int);
   string getName();
   void print(ostream &out);
 };
@@ -175,7 +233,7 @@ class Garden : public Card {
   istream *stream;
 
 public:
-  int getCardsPerCoin(int );
+  int getCardsPerCoin(int);
   string getName();
   void print(ostream &out);
 };
