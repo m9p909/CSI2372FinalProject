@@ -133,5 +133,13 @@ int copyrightMessage();
 int gameStartMessage();
 int promptEnterToContinue();
 
+// From card.cpp
+struct valuePair
+{
+  int coins;
+  int chainValue;
+};
+int calculateChainValue(int coins, valuePair *values, int numValues);
+
 // End definition for MAINPROG, the whole program.
 #endif
