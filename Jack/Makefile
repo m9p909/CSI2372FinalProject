@@ -8,9 +8,13 @@ all: game.exe test.exe
 main: game.exe
 game: game.exe
 # Primary game executable for evaluation
-game.exe: main.cpp main.h cls/*.cpp util/*.cpp
+game.exe: main.cpp main.h  cls/Cards/*.cpp cls/*.cpp  util/*.cpp 
 	g++ -Wall -o game.exe \
-		util/*.cpp cls/*.cpp main.cpp
+		util/*.cpp cls/Cards/*.cpp cls/*.cpp  main.cpp
+
+debug: main.cpp main.h  cls/Cards/*.cpp cls/*.cpp  util/*.cpp 
+	g++ -Wall -o debug.exe -g \
+		util/*.cpp cls/Cards/*.cpp cls/*.cpp  main.cpp
 
 tests: test.exe
 test: test.exe

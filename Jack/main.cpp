@@ -1,5 +1,7 @@
 #include "main.h";
 
+
+
 void setupNewGame(){
 
 }
@@ -13,7 +15,7 @@ int main(){
     string userInput = "";
     string player1Name;
     string player2Name;
-    
+    CardFactory * factory = factory->getFactory();
     while(onwards){
         cout << "Do you want to play a new game (1), or load a saved game(2)? \n";
         cin >> userInput;
@@ -38,6 +40,7 @@ int main(){
         } else{
             cout << "Please input only 1 or 2";
         };
+       
     }
 
 
