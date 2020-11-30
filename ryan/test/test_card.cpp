@@ -9,7 +9,7 @@
  * ensure that the unit testing system is working properly.
  */
 
-TEST_CASE("Testing the calculateChainValue function.")
+TEST_CASE("calculateChainValue")
 {
   valuePair values[] = {{1, 7}, {2, 8}, {3, 9}};
   CHECK(calculateChainValue(1, values, 3) == 7);
@@ -20,10 +20,12 @@ TEST_CASE("Testing the calculateChainValue function.")
   CHECK(calculateChainValue(192, values2, 2) == 37);
 }
 
-TEST_CASE("Testing the Stink card")
+TEST_CASE("Stink Card")
 {
   Stink x = Stink();
   CHECK(x.getName() == "Stink");
-  CHECK(x.getCardsPerCoin(3) == 3);
-  // CHECK(x.print() == "Stink");
+  CHECK(x.getCardsPerCoin(1) == 3);
+  CHECK(x.getCardsPerCoin(2) == 5);
+  CHECK(x.getCardsPerCoin(3) == 7);
+  CHECK(x.getCardsPerCoin(4) == 8);
 }
