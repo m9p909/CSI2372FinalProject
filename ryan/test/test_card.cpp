@@ -1,14 +1,6 @@
 #include "../main.h"
 #include "doctest.h"
 
-/**
- * These test cases are from the doctest guide:
- * https://github.com/onqtam/doctest/blob/master/doc/markdown/tutorial.md
- * 
- * It is here to provide a minimal example for contributors, and
- * ensure that the unit testing system is working properly.
- */
-
 TEST_CASE("calculateChainValue")
 {
   valuePair values[] = {{1, 7}, {2, 8}, {3, 9}};
@@ -28,4 +20,17 @@ TEST_CASE("Stink Card")
   CHECK(x.getCardsPerCoin(2) == 5);
   CHECK(x.getCardsPerCoin(3) == 7);
   CHECK(x.getCardsPerCoin(4) == 8);
+}
+
+TEST_CASE("Get Card Names")
+{
+  // Also ensures all cards can be instantiated.
+  CHECK(Blue().getName() == "Blue");
+  CHECK(Chili().getName() == "Chili");
+  CHECK(Stink().getName() == "Stink");
+  CHECK(Green().getName() == "Green");
+  CHECK(Soy().getName() == "Soy");
+  CHECK(Black().getName() == "Black");
+  CHECK(Red().getName() == "Red");
+  CHECK(Garden().getName() == "Garden");
 }

@@ -20,8 +20,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <limits>
-
-// Not used yet but may be useful:
+#include <typeinfo>
 #include <random>
 #include <algorithm>
 
@@ -45,7 +44,28 @@ public:
 
 class Deck;
 class DiscardPile;
-class Chain;
+class CardFactory;
+
+class Chain_Base
+{
+public:
+  Chain_Base();
+  ~Chain_Base();
+  Chain_Base(istream &, const CardFactory *);
+  virtual Chain_Base &operator+=(Card *) = 0;
+  virtual int sell() = 0;
+};
+
+template <typename T>
+class Chain : public Chain_Base
+{
+public:
+  vector<T *> cards;
+  Chain_Base &operator+=(Card *);
+  int sell();
+  void print(ostream &out);
+};
+
 class Table;
 class TradeArea;
 class Coins;
@@ -65,6 +85,7 @@ public:
   string getName();
   void print(ostream &out);
 };
+template class Chain<Blue>;
 
 class Chili : public Card
 {
@@ -73,6 +94,7 @@ public:
   string getName();
   void print(ostream &out);
 };
+template class Chain<Chili>;
 
 class Stink : public Card
 {
@@ -81,6 +103,7 @@ public:
   string getName();
   void print(ostream &out);
 };
+template class Chain<Stink>;
 
 class Green : public Card
 {
@@ -89,6 +112,7 @@ public:
   string getName();
   void print(ostream &out);
 };
+template class Chain<Green>;
 
 class Soy : public Card
 {
@@ -97,6 +121,7 @@ public:
   string getName();
   void print(ostream &out);
 };
+template class Chain<Soy>;
 
 class Black : public Card
 {
@@ -105,6 +130,7 @@ public:
   string getName();
   void print(ostream &out);
 };
+template class Chain<Black>;
 
 class Red : public Card
 {
@@ -113,6 +139,7 @@ public:
   string getName();
   void print(ostream &out);
 };
+template class Chain<Red>;
 
 class Garden : public Card
 {
@@ -121,6 +148,7 @@ public:
   string getName();
   void print(ostream &out);
 };
+template class Chain<Garden>;
 
 /**
  * Function Definitions
@@ -140,6 +168,16 @@ struct valuePair
   int chainValue;
 };
 int calculateChainValue(int coins, valuePair *values, int numValues);
+
+/**
+ * Exceptions 
+ * ==========
+ * Thrown from class implementations. 
+ */
+
+class IllegalType : public exception
+{
+};
 
 // End definition for MAINPROG, the whole program.
 #endif

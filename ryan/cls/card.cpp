@@ -175,7 +175,7 @@ int Garden::getCardsPerCoin(int coins)
 
 string Garden::getName()
 {
-  return "garden";
+  return "Garden";
 };
 
 void Garden::print(ostream &out)
