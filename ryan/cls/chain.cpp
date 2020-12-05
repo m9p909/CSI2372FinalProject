@@ -19,23 +19,41 @@ Chain_Base::~Chain_Base()
 template <typename T>
 Chain_Base &Chain<T>::operator+=(Card *c)
 {
-  cout << "Comparing types..." << endl;
   if (typeid(*c) == typeid(T))
   {
-    cout << "Comparing types..." << endl;
-    //cards.push_back((T)c);
+    cards.push_back(dynamic_cast<T *>(c));
     return *this;
   }
   else
-  {
-    cout << "Was not given the correct type of card..." << endl;
-    throw new IllegalType;
-  }
+    throw IllegalType();
 }
 
 template <typename T>
 int Chain<T>::sell()
 {
+  unsigned int size = cards.size();
+  if (size > 0)
+  {
+    unsigned int coins = 4; // Max number of coins is one.
+    unsigned int min_cards = 0;
+
+    // Check chain-length values from one to four coins.
+    while (coins >= 1)
+    {
+      try
+      {
+        min_cards = cards[0]->getCardsPerCoin(coins);
+        if (size >= min_cards)
+          return coins;
+      }
+      // If this exception is thrown, it's fine, we can just continue.
+      catch (CoinValueNotFound &e)
+      {
+      };
+
+      coins--;
+    }
+  }
   return 0;
 }
 

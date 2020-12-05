@@ -18,7 +18,7 @@ int calculateChainValue(int coins, valuePair *values, int numValues)
   }
 
   // If the value is not in the given pairs, raise an exception.
-  throw "Value not found for this card.";
+  throw CoinValueNotFound();
 }
 
 /**

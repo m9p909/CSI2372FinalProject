@@ -37,7 +37,7 @@ class Card
 {
 public:
   // Pure Virtual Functions:
-  virtual int getCardsPerCoin(int coints) = 0;
+  virtual int getCardsPerCoin(int coins) = 0;
   virtual string getName() = 0;
   virtual void print(ostream &out) = 0;
 };
@@ -81,7 +81,7 @@ class Players;
 class Blue : public Card
 {
 public:
-  int getCardsPerCoin(int coints);
+  int getCardsPerCoin(int coins);
   string getName();
   void print(ostream &out);
 };
@@ -90,7 +90,7 @@ template class Chain<Blue>;
 class Chili : public Card
 {
 public:
-  int getCardsPerCoin(int coints);
+  int getCardsPerCoin(int coins);
   string getName();
   void print(ostream &out);
 };
@@ -99,7 +99,7 @@ template class Chain<Chili>;
 class Stink : public Card
 {
 public:
-  int getCardsPerCoin(int coints);
+  int getCardsPerCoin(int coins);
   string getName();
   void print(ostream &out);
 };
@@ -108,7 +108,7 @@ template class Chain<Stink>;
 class Green : public Card
 {
 public:
-  int getCardsPerCoin(int coints);
+  int getCardsPerCoin(int coins);
   string getName();
   void print(ostream &out);
 };
@@ -117,7 +117,7 @@ template class Chain<Green>;
 class Soy : public Card
 {
 public:
-  int getCardsPerCoin(int coints);
+  int getCardsPerCoin(int coins);
   string getName();
   void print(ostream &out);
 };
@@ -126,7 +126,7 @@ template class Chain<Soy>;
 class Black : public Card
 {
 public:
-  int getCardsPerCoin(int coints);
+  int getCardsPerCoin(int coins);
   string getName();
   void print(ostream &out);
 };
@@ -135,7 +135,7 @@ template class Chain<Black>;
 class Red : public Card
 {
 public:
-  int getCardsPerCoin(int coints);
+  int getCardsPerCoin(int coins);
   string getName();
   void print(ostream &out);
 };
@@ -144,7 +144,7 @@ template class Chain<Red>;
 class Garden : public Card
 {
 public:
-  int getCardsPerCoin(int coints);
+  int getCardsPerCoin(int coins);
   string getName();
   void print(ostream &out);
 };
@@ -177,6 +177,20 @@ int calculateChainValue(int coins, valuePair *values, int numValues);
 
 class IllegalType : public exception
 {
+public:
+  const char *what() const throw()
+  {
+    return "Illegal type exception.";
+  }
+};
+
+class CoinValueNotFound : public exception
+{
+public:
+  const char *what() const throw()
+  {
+    return "A coin value for this number of coins was not found.";
+  }
 };
 
 // End definition for MAINPROG, the whole program.
