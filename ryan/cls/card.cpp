@@ -169,7 +169,7 @@ void Red::print(ostream &out)
 
 int Garden::getCardsPerCoin(int coins)
 {
-  valuePair values[] = {{1, 0}, {2, 2}, {3, 3}, {4, 0}};
+  valuePair values[] = {{2, 2}, {3, 3}};
   return calculateChainValue(coins, values, 4);
 };
 

@@ -60,4 +60,24 @@ TEST_CASE("Chain sell() function")
   for (int i = 0; i < 40; i++)
     *x += y;
   CHECK((*x).sell() == 4);
+
+  // Test another type of card, just in case.
+  Chain<Blue> bc = Chain<Blue>();
+  Blue *b = new Blue();
+  for (int i = 0; i < 9; i++)
+    bc += b;
+  CHECK(bc.sell() == 3);
+
+  // With 10 cards, a Blue chain should return 4.
+  bc += b;
+  CHECK(bc.sell() == 4);
+
+  // Garden only has two values, so let's check that too.
+  Chain<Garden> gc = Chain<Garden>();
+  Garden g = Garden();
+  for (int i = 0; i < 30; i++)
+  {
+    gc += &g;
+  }
+  CHECK(gc.sell() == 3);
 }

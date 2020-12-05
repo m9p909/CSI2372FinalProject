@@ -42,7 +42,10 @@ int Chain<T>::sell()
     {
       try
       {
+        // Check the minimum number of cards required to get <this> number of coins.
         min_cards = cards[0]->getCardsPerCoin(coins);
+
+        // If the chain size is large enough, return the coin value.
         if (size >= min_cards)
           return coins;
       }
