@@ -51,6 +51,7 @@ public:
   Deck(istream &, const CardFactory *);
   Card *draw();
   friend ostream &operator<<(ostream &, Deck &);
+  void status(); // Debugging function.
 };
 
 class CardFactory
@@ -65,6 +66,7 @@ public:
   CardFactory();
   static CardFactory *getFactory();
   Deck getDeck();
+  // void status(); // Debugging function.
 };
 
 class DiscardPile : public vector<Card *>
@@ -76,6 +78,7 @@ public:
   Card *top();
   void print(std::ostream &);
   friend ostream &operator<<(ostream &, Deck &);
+  // void status(); // Debugging function.
 };
 
 class Chain_Base
@@ -199,7 +202,11 @@ struct valuePair
   int coins;
   int chainValue;
 };
-int calculateChainValue(int coins, valuePair *values, int numValues);
+int calculateChainValue(int, valuePair *, int);
+
+// From cardfactory.cpp
+template <typename T>
+void addCardsToDeck(Deck *, int, T);
 
 /**
  * Deck Properties & Constants 

@@ -23,3 +23,24 @@ Card *Deck::draw()
   pop_back();
   return x;
 }
+
+// Prints the content of the deck. Debugging function.
+void Deck::status()
+{
+  if (!empty())
+  {
+    const int deck_size = size();
+    cout << "Deck consists of " << deck_size << " cards. Content: ";
+    for (int i = 0; i < deck_size; i++)
+    {
+      if (i != 0)
+        cout << ", ";
+      at(i)->print(cout);
+    }
+    cout << endl;
+    {
+    }
+  }
+  else
+    cout << "Deck is empty.";
+}
