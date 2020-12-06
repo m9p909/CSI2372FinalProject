@@ -102,10 +102,23 @@ public:
   void print(ostream &out);
 };
 
+class Hand : public vector<Card *>
+{
+public:
+  Hand() = default;
+  ~Hand() = default;
+  Hand(istream &, const CardFactory *);
+  Hand &operator+=(Card *);
+  Card *play();
+  Card *top();
+  Card *operator[](int);
+  friend ostream &operator<<(ostream &, Deck &);
+  void status(); // Debugging function.
+};
+
 class Table;
 class TradeArea;
 class Coins;
-class Hand;
 class Players;
 
 /**

@@ -15,6 +15,6 @@ game.exe: main.cpp main.h cls/*.cpp util/*.cpp
 tests: test.exe
 test: test.exe
 # Run 'make test.exe' to create the test executable.
-test.exe: cls/*.cpp util/*.cpp test/*.cpp
+test.exe: main.h cls/*.cpp util/*.cpp test/*.cpp
 	g++ -Wall -o test.exe \
 		util/*.cpp cls/*.cpp test/*.cpp
