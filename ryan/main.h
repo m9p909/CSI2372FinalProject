@@ -47,6 +47,7 @@ public:
 class Deck : public vector<Card *>
 {
 public:
+  Deck();
   Deck(istream &, const CardFactory *);
   Card *draw();
   friend ostream &operator<<(ostream &, Deck &);
@@ -57,9 +58,11 @@ class CardFactory
 private:
   CardFactory(const CardFactory &); // Prevent usage by making private.
   ~CardFactory();
-  Deck deck;
+  static CardFactory *internal;
+  static Deck *deck;
 
 public:
+  CardFactory();
   static CardFactory *getFactory();
   Deck getDeck();
 };

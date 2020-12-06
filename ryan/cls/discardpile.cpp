@@ -9,6 +9,8 @@ DiscardPile::DiscardPile(istream &, const CardFactory *)
 
 DiscardPile &DiscardPile::operator+=(Card *c)
 {
+  push_back(c);
+  return *this;
 }
 
 // Returns and removes the top card from the deck.

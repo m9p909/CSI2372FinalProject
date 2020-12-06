@@ -1,5 +1,9 @@
 #include "../main.h"
 
+Deck::Deck()
+{
+}
+
 // Reconstructs the deck from a file.
 Deck::Deck(istream &, const CardFactory *)
 {
