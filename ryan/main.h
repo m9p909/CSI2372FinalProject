@@ -109,7 +109,7 @@ class Players;
 
 /**
  * Class Implementation Definitions
- * =================
+ * ================================
  * Classes corresponding to the game components
  * provided in the program description.
  */
@@ -222,6 +222,7 @@ const int SOY_CARDS = 12;
 const int BLACK_CARDS = 10;
 const int RED_CARDS = 8;
 const int GARDEN_CARDS = 6;
+const int DECK_SIZE = BLUE_CARDS + CHILI_CARDS + STINK_CARDS + GREEN_CARDS + SOY_CARDS + BLACK_CARDS + RED_CARDS + GARDEN_CARDS;
 
 /**
  * Exceptions 
