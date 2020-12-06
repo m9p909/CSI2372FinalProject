@@ -116,10 +116,30 @@ public:
   void status(); // Debugging function.
 };
 
+class Player
+{
+private:
+  vector<Chain_Base *> *chains;
+  string name;
+
+public:
+  Player();
+  ~Player();
+  Player(string &);
+  Player(istream &, const CardFactory *);
+  string getName();
+  int getNumCoins();
+  Player &operator+=(int);
+  int getMaxNumChains();
+  int getNumChains();
+  Chain_Base &operator[](int i);
+  void buyThirdChain();
+  void printHand(ostream &, bool);
+};
+
 class Table;
 class TradeArea;
 class Coins;
-class Players;
 
 /**
  * Class Implementation Definitions
