@@ -1,11 +1,6 @@
 #include "../main.h"
 
 /**
- * Notes to the marker:
- * - The abstract definition of Card is in main.h
- */
-
-/**
  * Helper method for card objects.
  * Given an array of structs with coins and values, return the value.
  */
@@ -80,8 +75,6 @@ void Stink::print(ostream &out)
 {
   out << "S";
 };
-
-/* ============================================================================== */
 
 /**
  * Green - Card Function Implementations

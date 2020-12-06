@@ -12,7 +12,6 @@
  *  - Jack Clarke  0000000 
  */
 
-// Ensure this header is only defined once.
 #ifndef MAINPROG
 #define MAINPROG
 
@@ -24,7 +23,7 @@
 #include <random>
 #include <algorithm>
 
-// Always use the standard namespace.
+// Always use the standard namespace in this program.
 using namespace std;
 
 /**
@@ -33,18 +32,48 @@ using namespace std;
  * Classes corresponding to the game components
  * provided in the program description.
  */
+
+// Forward Declarations:
+class CardFactory;
+
 class Card
 {
 public:
-  // Pure Virtual Functions:
   virtual int getCardsPerCoin(int coins) = 0;
   virtual string getName() = 0;
   virtual void print(ostream &out) = 0;
 };
 
-class Deck;
-class DiscardPile;
-class CardFactory;
+class Deck : public vector<Card *>
+{
+public:
+  Deck(istream &, const CardFactory *);
+  Card *draw();
+  friend ostream &operator<<(ostream &, Deck &);
+};
+
+class CardFactory
+{
+private:
+  CardFactory(const CardFactory &); // Prevent usage by making private.
+  ~CardFactory();
+  Deck deck;
+
+public:
+  static CardFactory *getFactory();
+  Deck getDeck();
+};
+
+class DiscardPile : public vector<Card *>
+{
+public:
+  DiscardPile(istream &, const CardFactory *);
+  DiscardPile &operator+=(Card *);
+  Card *pickUp();
+  Card *top();
+  void print(std::ostream &);
+  friend ostream &operator<<(ostream &, Deck &);
+};
 
 class Chain_Base
 {
