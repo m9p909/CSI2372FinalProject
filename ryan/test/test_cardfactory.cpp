@@ -1,6 +1,13 @@
 #include "../main.h"
 #include "doctest.h"
 
+TEST_CASE("CardFactory Instantiation")
+{
+  CardFactory::getFactory();
+  // You can't compile if you try to call the constructor, so no need to test this:
+  // CHECK_THROWS(CardFactory());
+}
+
 TEST_CASE("Test CardFactory")
 {
   CHECK(1 == 1);

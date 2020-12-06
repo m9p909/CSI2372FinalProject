@@ -33,8 +33,7 @@ using namespace std;
  * provided in the program description.
  */
 
-// Forward Declarations:
-class CardFactory;
+class CardFactory; // Forward declaration of CardFactory required for correct compilation.
 
 class Card
 {
@@ -58,7 +57,7 @@ class CardFactory
 {
 private:
   CardFactory(const CardFactory &); // Prevent usage by making private.
-  ~CardFactory();
+  ~CardFactory() = default;
   static CardFactory *internal;
   static Deck *deck;
 
@@ -72,20 +71,22 @@ public:
 class DiscardPile : public vector<Card *>
 {
 public:
+  DiscardPile() = default;
+  ~DiscardPile() = default;
   DiscardPile(istream &, const CardFactory *);
   DiscardPile &operator+=(Card *);
   Card *pickUp();
   Card *top();
   void print(std::ostream &);
   friend ostream &operator<<(ostream &, Deck &);
-  // void status(); // Debugging function.
+  void status(); // Debugging function.
 };
 
 class Chain_Base
 {
 public:
-  Chain_Base();
-  ~Chain_Base();
+  Chain_Base() = default;
+  ~Chain_Base() = default;
   Chain_Base(istream &, const CardFactory *);
   virtual Chain_Base &operator+=(Card *) = 0;
   virtual int sell() = 0;
@@ -245,6 +246,15 @@ public:
   const char *what() const throw()
   {
     return "A coin value for this number of coins was not found.";
+  }
+};
+
+class Unimplemented : public exception
+{
+public:
+  const char *what() const throw()
+  {
+    return "This required function has not yet been implemented.";
   }
 };
 

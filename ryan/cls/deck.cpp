@@ -9,7 +9,7 @@ Deck::Deck()
 Deck::Deck(istream &, const CardFactory *)
 {
   // TODO: Implement. Requires the card factory class.
-  cerr << "Unimplemented" << endl;
+  throw Unimplemented();
 }
 
 // Returns and removes the top card from the deck.

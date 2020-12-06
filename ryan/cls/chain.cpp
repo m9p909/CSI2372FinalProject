@@ -8,14 +8,6 @@ Chain_Base::Chain_Base(istream &, const CardFactory *)
 {
 }
 
-Chain_Base::Chain_Base()
-{
-}
-
-Chain_Base::~Chain_Base()
-{
-}
-
 template <typename T>
 Chain_Base &Chain<T>::operator+=(Card *c)
 {

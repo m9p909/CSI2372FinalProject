@@ -4,11 +4,9 @@
 TEST_CASE("Chain Instantiation")
 {
   // Ensure the instantiation of a new chain does not raise errors.
-  Chain<Stink> n = Chain<Stink>();
+  Chain<Stink>();
   Chain<Stink> *x = new Chain<Stink>();
-  Stink *y = new Stink();
-  *x += y;
-  n += y;
+  CHECK((*x).cards.empty());
 }
 
 TEST_CASE("Chain + operator overload")

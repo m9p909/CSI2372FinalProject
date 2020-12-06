@@ -42,10 +42,6 @@ CardFactory::CardFactory()
   addCardsToDeck(deck, GARDEN_CARDS, Garden());
 }
 
-CardFactory::~CardFactory()
-{
-}
-
 CardFactory *CardFactory::getFactory()
 {
   // Return the static card factory.
