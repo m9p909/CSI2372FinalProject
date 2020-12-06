@@ -1,5 +1,6 @@
 #include "../main.h"
 
+// Simple constructor makes it easy to instantiate.
 Deck::Deck()
 {
 }

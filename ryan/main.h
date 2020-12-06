@@ -202,6 +202,21 @@ struct valuePair
 int calculateChainValue(int coins, valuePair *values, int numValues);
 
 /**
+ * Deck Properties & Constants 
+ * ===========================
+ * Keep the deck parameters in a set of constants.
+ */
+
+const int BLUE_CARDS = 20;
+const int CHILI_CARDS = 18;
+const int STINK_CARDS = 16;
+const int GREEN_CARDS = 14;
+const int SOY_CARDS = 12;
+const int BLACK_CARDS = 10;
+const int RED_CARDS = 8;
+const int GARDEN_CARDS = 6;
+
+/**
  * Exceptions 
  * ==========
  * Thrown from class implementations. 
