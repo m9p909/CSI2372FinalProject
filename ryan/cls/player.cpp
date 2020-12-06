@@ -3,17 +3,20 @@
 Player::Player()
 {
   chains = new vector<Chain_Base *>();
-}
-
-Player::~Player()
-{
-  delete chains;
+  name = "Anonymous";
+  coins = 0;
 }
 
 Player::Player(string &playerName)
 {
   chains = new vector<Chain_Base *>();
   name = playerName;
+  coins = 0;
+}
+
+Player::~Player()
+{
+  delete chains;
 }
 
 Player::Player(istream &, const CardFactory *)
@@ -28,11 +31,14 @@ string Player::getName()
 
 int Player::getNumCoins()
 {
-  return 0;
+  return coins;
 }
 
-Player &Player::operator+=(int)
+// Adds coins to the player.
+Player &Player::operator+=(int newCoins)
 {
+  cout << "Adding " << newCoins << " to player." << endl;
+  coins += newCoins;
   return *this;
 }
 
@@ -43,7 +49,7 @@ int Player::getMaxNumChains()
 
 int Player::getNumChains()
 {
-  return 0;
+  return chains->size();
 }
 
 Chain_Base &Player::operator[](int i)

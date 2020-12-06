@@ -121,6 +121,7 @@ class Player
 private:
   vector<Chain_Base *> *chains;
   string name;
+  int coins;
 
 public:
   Player();
