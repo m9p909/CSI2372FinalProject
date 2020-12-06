@@ -43,7 +43,7 @@ public:
   virtual void print(ostream &out) = 0;
 };
 
-class TradeArea;
+
 class Coins;
 
 /**
@@ -72,8 +72,23 @@ public:
   virtual Chain_Base &operator+=(Card *card);
   virtual int sell();
   virtual void print(ostream &out) const;
+  virtual string getName();
+  ;
+  
   
   friend ostream &operator<<(ostream &out, const Chain_Base &chain);
+};
+
+template <class T> class Chain : public Chain_Base {
+  istream *stream;
+  T *card_example;
+  vector<T *> chainV;
+  void print(ostream &out) const;
+  string getName();
+  Chain(istream &, const CardFactory *);
+  Chain &operator+=(Card *card);
+  int sell();
+  friend ostream &operator<<(ostream &out, const Chain &chain);
 };
 
 
@@ -83,6 +98,7 @@ class Deck : public vector<Card *> {
 
 public:
   Deck(istream &, CardFactory *);
+  Deck();
   Card *draw();
   friend ostream &operator<<(ostream &out, const Deck &chain);
 };
@@ -90,23 +106,16 @@ public:
 class DiscardPile : public vector<Card *> {
   istream *stream;
   const CardFactory *factory;
+  public:
   DiscardPile(istream &, const CardFactory *);
+  DiscardPile();
   DiscardPile &operator+=(Card *);
   Card *pickUp();
   Card *top();
   void print(std::ostream &);
 };
 
-template <class T> class Chain : public Chain_Base {
-  istream *stream;
-  T *card_example;
-  vector<T *> chainV;
-  void print(ostream &out) const;
-  Chain(istream &, const CardFactory *);
-  Chain &operator+=(T *card);
-  int sell();
-  friend ostream &operator<<(ostream &out, const Chain &chain);
-};
+
 
 
 
@@ -114,7 +123,7 @@ class Hand {
 public:
   vector<Card *> cards;
   Hand(istream &, const CardFactory *);
-  Hand &operator+=(Card *);
+  Hand *operator+=(Card *);
   Card *play();
   Card *top();
   Card *operator[](int);
@@ -124,12 +133,14 @@ public:
 class Player {
   string playerName;
   int numCoins;
-  vector<Chain_Base> chains;
+  
   int numChains = 2;
-  Hand *hand;
+  
 
 public:
+  vector<Chain_Base> chains;
   Player(std::string &);
+  Hand *hand;
   Player(istream &, const CardFactory *);
   string getName();
   int getNumCoins();
@@ -143,9 +154,12 @@ public:
 };
 
 class TradeArea {
+  public:
   vector<Card *> cards;
   TradeArea(istream &, const CardFactory *);
+  TradeArea();
   TradeArea &operator+=(Card *);
+  void discardAll(DiscardPile &discard);
   bool legal(Card *);
   Card *trade(string);
   int numCards();
@@ -153,12 +167,16 @@ class TradeArea {
 };
 
 class Table {
+  public:
   Player *player1;
   Player *player2;
   Deck *deck;
   DiscardPile *discardPile;
-  // TradeArea tradeArea;
+  TradeArea* tradeArea;
+
+  
   Table(istream &, const CardFactory *);
+  Table(string player1Name, string player2Name);
   bool win(std::string &);
   void printHand(bool);
   friend ostream &operator<<(ostream &out, const Table &table);

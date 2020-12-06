@@ -3,7 +3,7 @@
 Hand::Hand(istream &, const CardFactory *){
 
 };
-Hand &Hand::operator+=(Card *c) { cards.push_back(c); };
+Hand *Hand::operator+=(Card *c) { cards.push_back(c); };
 Card *Hand::play() {
   Card *output = cards.front();
   cards.erase(cards.begin());
@@ -15,6 +15,7 @@ Card *Hand::operator[](int index) {
   cards.erase(cards.begin() + index);
   return output;
 };
+
 
 ostream &operator<<(ostream &out, const Hand &hand) {
   out << "Hand:\t";

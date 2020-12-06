@@ -5,6 +5,10 @@ DiscardPile::DiscardPile(istream &input, const CardFactory *facto) {
   stream = &input;
 }
 
+DiscardPile::DiscardPile(){
+  factory = factory->getFactory();
+}
+
 DiscardPile &DiscardPile::operator+=(Card *card) { this->push_back(card); }
 Card *DiscardPile::pickUp() {
   Card *output = this->front();
@@ -12,6 +16,8 @@ Card *DiscardPile::pickUp() {
                               // might need to deep copy
   return output;
 }
+
+
 
 Card *DiscardPile::top() { return this->front(); }
 void DiscardPile::print(std::ostream &stream) {

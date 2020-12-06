@@ -4,6 +4,10 @@ TradeArea::TradeArea(istream &out, const CardFactory *) {
   // not sure what to do here
 }
 
+TradeArea::TradeArea() {
+  
+}
+
 TradeArea &TradeArea::operator+=(Card *card) { cards.push_back(card); }
 bool TradeArea::legal(Card *card) {
 
@@ -14,6 +18,13 @@ bool TradeArea::legal(Card *card) {
 
     return true;
   }
+}
+
+void TradeArea::discardAll(DiscardPile &discard){
+  for(auto card : cards){
+    discard.push_back(card);
+  }
+
 }
 
 Card *TradeArea::trade(string cardName) {

@@ -6,7 +6,7 @@ template <class T> Chain<T>::Chain(istream &, const CardFactory *) {
   // loads data
 }
 
-template <class T> Chain<T> &Chain<T>::operator+=(T *card) {
+template <class T> Chain<T> &Chain<T>::operator+=(Card *card) {
   if (typeid(card_example) == typeid(card)) {
     chainV.push_back(card);
 
@@ -52,6 +52,33 @@ template <class T>  void Chain<T>::print(ostream &out) const{
   out << "Something has gone wrong";
 }
 
+template <class T>  string Chain<T>::getName(){
+    return "Name";
+}
+template <> string Chain<Blue>::getName(){
+  return "Blue";
+}
+template <> string Chain<Black>::getName(){
+  return "Black";
+}
+template <> string Chain<Chili>::getName(){
+  return "Chili";
+}
+template <> string Chain<Garden>::getName(){
+  return "Garden";
+}
+template <> string Chain<Green>::getName(){
+  return "Green";
+}
+template <> string Chain<Red>::getName(){
+  return "Red";
+}
+template <> string Chain<Soy>::getName(){
+  return "Soy";
+}
+template <> string Chain<Stink>::getName(){
+  return "Stink";
+}
 template <>  void Chain<Blue>::print(ostream &out) const{
   out << card_example->getName() << "\t";
   for (int i = 0; i < chainV.size(); i++) {
@@ -100,3 +127,4 @@ template <> void Chain<Stink>::print(ostream &out) const {
 ostream &operator<<(ostream &out, const Chain_Base &chain) { 
   chain.print(out);
    }
+
