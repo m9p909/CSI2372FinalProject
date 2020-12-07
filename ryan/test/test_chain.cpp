@@ -7,6 +7,16 @@ TEST_CASE("Chain Instantiation")
   Chain<Stink>();
   Chain<Stink> *x = new Chain<Stink>();
   CHECK((*x).cards.empty());
+
+  // Not necessary, but instantiate every type just in case.
+  Chain<Blue>();
+  Chain<Chili>();
+  Chain<Stink>();
+  Chain<Green>();
+  Chain<Soy>();
+  Chain<Black>();
+  Chain<Red>();
+  Chain<Garden>();
 }
 
 TEST_CASE("Chain + operator overload")

@@ -54,7 +54,7 @@ int Player::getNumChains()
 Chain_Base &Player::operator[](int i)
 {
   if (!chains->empty() && static_cast<long unsigned int>(i) < chains->size())
-    return *(chains->at(i));
+    return *chains->at(i);
 
   // If the above doesn't return a chain, raise an exception.
   throw ChainAtIndexNotFound();
@@ -67,6 +67,8 @@ void Player::buyThirdChain()
     coins -= 3;
     maxNumChains = 3;
   }
+  else
+    throw PlayerChainsFull();
 }
 
 void Player::addChain(Chain_Base *newChain)
@@ -90,7 +92,7 @@ void Player::printHand(std::ostream &out, bool wholeHand)
 
 void Player::print(std::ostream &out)
 {
-  out << name << "  " << coins << " coins" << endl;
+  out << name << "   " << coins << " coins" << endl;
   if (!chains->empty())
   {
     for (long unsigned int i = 0; i < chains->size(); i++)
