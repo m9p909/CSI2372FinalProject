@@ -27,3 +27,23 @@ make test && ./test.exe
 ## Implementation Information
 
 Tested with the [Doctest](https://github.com/onqtam/doctest) unit testing library.
+
+Excluding the Doctest header, the solution is 1150 lines of C++ as of commit [9d59d0](https://github.com/JackClarkeUottawa/CSI2372FinalProject/commit/9d59d0a537d88d600cc1d1723548c4da2624b07d)
+
+```
+PS C:\Users\Ryan Fleck\Documents\CSI2372FinalProject> cloc .\ryan\ --exclude-list-file=..\exclude.txt
+      23 text files.
+      23 unique files.
+       5 files ignored.
+
+github.com/AlDanial/cloc v 1.82  T=0.50 s (44.0 files/s, 3182.0 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+C++                             20            182            152            904
+C/C++ Header                     1             39             48            246
+make                             1              4              4             12
+-------------------------------------------------------------------------------
+SUM:                            22            225            204           1162
+-------------------------------------------------------------------------------
+```
