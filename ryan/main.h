@@ -172,7 +172,7 @@ public:
   void addChain(Chain_Base *);
 };
 
-class TradeArea : list<Card *>
+class TradeArea : public list<Card *>
 {
 public:
   TradeArea() = default;
