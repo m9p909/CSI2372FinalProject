@@ -182,3 +182,11 @@ ostream &operator<<(ostream &out, Card &card)
   card.print(out);
   return out;
 }
+
+// This allows easy printing of cards at a pointer.
+ostream &operator<<(ostream &out, Card *card)
+{
+  // Call the virtual print function in the children.
+  card->print(out);
+  return out;
+}

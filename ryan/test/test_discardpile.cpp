@@ -44,3 +44,24 @@ TEST_CASE("Peek and pick up a card from discard pile")
   CHECK(d.pickUp() == &g);
   CHECK(d.size() == 2);
 }
+
+TEST_CASE("Print a discard pile")
+{
+  DiscardPile d = DiscardPile();
+
+  // Create cards and add references to the DiscardPile.
+  Stink s = Stink();
+  Blue b = Blue();
+  Garden g = Garden();
+  d += (&s);
+  d += (&b);
+  d += (&g);
+  d += (&s);
+  d += (&b);
+  d += (&g);
+
+  stringstream out;
+  out << d;
+  string output_string = out.str();
+  CHECK(output_string == "SBgSBg");
+}

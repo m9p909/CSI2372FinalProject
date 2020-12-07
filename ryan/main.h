@@ -44,6 +44,7 @@ public:
   virtual string getName() = 0;
   virtual void print(ostream &out) = 0;
   friend ostream &operator<<(ostream &, Card &);
+  friend ostream &operator<<(ostream &, Card *);
 };
 
 class Deck : public vector<Card *>
@@ -80,7 +81,7 @@ public:
   DiscardPile &operator+=(Card *);
   Card *pickUp();
   Card *top();
-  void print(std::ostream &);
+  void print(ostream &);
   friend ostream &operator<<(ostream &, DiscardPile &);
   void status(); // Debugging function.
 };

@@ -33,3 +33,17 @@ Card *DiscardPile::pickUp()
   pop_back();
   return x;
 }
+
+void DiscardPile::print(ostream &out)
+{
+  if (!empty())
+    for (long unsigned int i = 0; i < size(); i++)
+      out << at(i);
+}
+
+ostream &operator<<(ostream &out, DiscardPile &pile)
+{
+  // Call the virtual print function in the children.
+  pile.print(out);
+  return out;
+}

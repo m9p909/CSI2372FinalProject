@@ -48,8 +48,9 @@ TEST_CASE("Print Cards")
   Red R = Red();
   Garden g = Garden();
 
-  /// Send each to the stringstream.
-  out << B << C << S << G << s << b << R << g;
+  // Send each to the stringstream.
+  // Half are referenced by address.
+  out << B << C << S << G << &s << &b << &R << &g;
 
   // Verify that the correct letters are printed.
   CHECK(out.str() == "BCSGsbRg");
