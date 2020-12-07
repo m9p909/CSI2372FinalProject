@@ -165,8 +165,6 @@ public:
   void addChain(Chain_Base *);
 };
 
-class Table;
-
 class TradeArea : list<Card *>
 {
 public:
@@ -182,6 +180,22 @@ public:
   void print(ostream &);
   friend ostream &operator<<(ostream &, TradeArea &);
   friend ostream &operator<<(ostream &, TradeArea *);
+};
+
+class Table
+{
+public:
+  Player *player1;
+  Player *player2;
+  Deck deck;
+  DiscardPile *discardPile;
+  TradeArea *tradeArea;
+
+  Table(istream &, const CardFactory *);
+  Table(string player1Name, string player2Name);
+  bool win(std::string &);
+  void printHand(bool);
+  friend ostream &operator<<(ostream &out, const Table &table);
 };
 
 /**

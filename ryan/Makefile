@@ -12,6 +12,12 @@ game.exe: main.cpp main.h cls/*.cpp util/*.cpp
 	g++ -Wall -o game.exe \
 		util/*.cpp cls/*.cpp main.cpp
 
+debug: debug.exe
+# Game executable with debugging flag 
+debug.exe: main.cpp main.h cls/*.cpp util/*.cpp
+	g++ -Wall -d -o game.exe \
+		util/*.cpp cls/*.cpp main.cpp
+
 tests: test.exe
 test: test.exe
 # Run 'make test.exe' to create the test executable.
