@@ -44,3 +44,21 @@ void Deck::status()
   else
     cout << "Deck is empty.";
 }
+
+ostream &operator<<(ostream &out, Deck &deck)
+{
+  if (!deck.empty())
+  {
+    int length = deck.size();
+    for (int i = 0; i < length; i++)
+    {
+      // If not the first element, add a space between elements.
+      if (!i == 0)
+        out << " ";
+
+      // Send the element to the stream.
+      out << deck.at(i);
+    }
+  }
+  return out;
+}

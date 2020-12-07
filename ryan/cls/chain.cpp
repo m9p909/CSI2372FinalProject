@@ -77,6 +77,7 @@ void Chain<T>::print(ostream &out)
   out << s.getName();
 }
 
+// Calls the child print() functions when the << operator is used on a chain.
 ostream &operator<<(ostream &out, Chain_Base &chain)
 {
   chain.print(out);

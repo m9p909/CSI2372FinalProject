@@ -43,6 +43,7 @@ public:
   virtual int getCardsPerCoin(int coins) = 0;
   virtual string getName() = 0;
   virtual void print(ostream &out) = 0;
+  friend ostream &operator<<(ostream &, Card &);
 };
 
 class Deck : public vector<Card *>
@@ -80,7 +81,7 @@ public:
   Card *pickUp();
   Card *top();
   void print(std::ostream &);
-  friend ostream &operator<<(ostream &, Deck &);
+  friend ostream &operator<<(ostream &, DiscardPile &);
   void status(); // Debugging function.
 };
 

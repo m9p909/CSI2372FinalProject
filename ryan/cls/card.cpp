@@ -175,3 +175,10 @@ void Garden::print(ostream &out)
 {
   out << "g";
 };
+
+ostream &operator<<(ostream &out, Card &card)
+{
+  // Call the virtual print function in the children.
+  card.print(out);
+  return out;
+}

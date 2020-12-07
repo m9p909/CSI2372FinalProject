@@ -34,3 +34,23 @@ TEST_CASE("Get Card Names")
   CHECK(Red().getName() == "Red");
   CHECK(Garden().getName() == "Garden");
 }
+
+TEST_CASE("Print Cards")
+{
+  // A stringstream will allow us to read output.
+  stringstream out;
+  Blue B = Blue();
+  Chili C = Chili();
+  Stink S = Stink();
+  Green G = Green();
+  Soy s = Soy();
+  Black b = Black();
+  Red R = Red();
+  Garden g = Garden();
+
+  /// Send each to the stringstream.
+  out << B << C << S << G << s << b << R << g;
+
+  // Verify that the correct letters are printed.
+  CHECK(out.str() == "BCSGsbRg");
+}
