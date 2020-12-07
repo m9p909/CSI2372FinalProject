@@ -45,13 +45,24 @@ void Deck::status()
     cout << "Deck is empty.";
 }
 
+void Deck::print(ostream &out)
+{
+  if (!empty())
+  {
+    int length = size();
+    for (int i = 0; i < length; i++)
+      out << (i == 0 ? "" : " ") << at(i);
+  }
+}
+
 ostream &operator<<(ostream &out, Deck &deck)
 {
-  if (!deck.empty())
-  {
-    int length = deck.size();
-    for (int i = 0; i < length; i++)
-      out << (i == 0 ? "" : " ") << deck.at(i);
-  }
+  deck.print(out);
+  return out;
+}
+
+ostream &operator<<(ostream &out, Deck *deck)
+{
+  deck->print(out);
   return out;
 }

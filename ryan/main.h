@@ -59,7 +59,13 @@ public:
   Deck();
   Deck(istream &, const CardFactory *);
   Card *draw();
+
+  // Printing Methods
+  void print(ostream &);
   friend ostream &operator<<(ostream &, Deck &);
+  friend ostream &operator<<(ostream &, Deck *);
+
+  // Other Methods
   void status(); // Debugging function.
 };
 
@@ -197,15 +203,21 @@ class Table
 public:
   Player *player1;
   Player *player2;
-  Deck deck;
+  Deck *deck;
   DiscardPile *discardPile;
   TradeArea *tradeArea;
 
+  Table() = default;
+  ~Table() = default;
   Table(istream &, const CardFactory *);
   Table(string player1Name, string player2Name);
-  bool win(std::string &);
+  bool win(string &);
   void printHand(bool);
-  friend ostream &operator<<(ostream &out, const Table &table);
+
+  // Printing Methods
+  void print(ostream &);
+  friend ostream &operator<<(ostream &out, Table &table);
+  friend ostream &operator<<(ostream &out, Table *table);
 };
 
 /**
