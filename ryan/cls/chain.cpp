@@ -9,6 +9,11 @@ Chain_Base::Chain_Base(istream &, const CardFactory *)
 }
 
 template <typename T>
+int Chain<T>::getSize(){
+  return cards.size();
+}
+
+template <typename T>
 Chain_Base &Chain<T>::operator+=(Card *c)
 {
   if (typeid(*c) == typeid(T))
@@ -50,6 +55,11 @@ int Chain<T>::sell()
     }
   }
   return 0;
+}
+//Gets an example of the object in the chain
+template <typename T>
+Card* Chain<T>::getExampleItem(){
+  return new T;
 }
 
 // Prints the Chain name, followed by three spaces, followed by space-separated card letters.

@@ -1,0 +1,1 @@
+make test.exe && ./test.exe
