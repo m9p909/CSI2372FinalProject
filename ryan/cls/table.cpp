@@ -17,17 +17,17 @@ Table::Table(string player1Name, string player2Name)
   CardFactory *factory = factory->getFactory();
 
   // Grab and store a new Deck from the factory.
-  Deck internal = (factory->getDeck());
-  deck = &internal;
+  deck = (factory->getDeck());
 
   // Create a new DiscardPile and TradeArea
   discardPile = new DiscardPile();
   tradeArea = new TradeArea();
 }
 
-bool Table::win(std::string &str)
+// Returns true and adds the player name to the given string if they won.
+bool Table::win(string &str)
 {
-  if (deck->empty())
+  if (deck.empty())
   {
     if (player1->getNumCoins() > player2->getNumCoins())
       str = player1->getName();
@@ -39,11 +39,13 @@ bool Table::win(std::string &str)
   return false;
 };
 
+// Prints the contents of the table.
 void Table::print(ostream &out)
 {
   out << player1;
   out << player2;
   out << deck;
+  out << tradeArea;
   out << discardPile;
 }
 

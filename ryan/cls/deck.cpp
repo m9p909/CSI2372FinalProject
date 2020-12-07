@@ -16,7 +16,7 @@ Deck::Deck(istream &, const CardFactory *)
 Card *Deck::draw()
 {
   if (empty())
-    return nullptr;
+    throw DeckEmpty();
 
   // If the deck is not empty, send the last card.
   Card *x = back();

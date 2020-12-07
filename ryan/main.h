@@ -203,7 +203,7 @@ class Table
 public:
   Player *player1;
   Player *player2;
-  Deck *deck;
+  Deck deck;
   DiscardPile *discardPile;
   TradeArea *tradeArea;
 
@@ -226,6 +226,7 @@ public:
  * Classes corresponding to the game components
  * provided in the program description.
  */
+
 class Blue : public Card
 {
 public:
@@ -376,6 +377,15 @@ public:
   const char *what() const throw()
   {
     return "A chain does not exist at the called index.";
+  }
+};
+
+class DeckEmpty : public exception
+{
+public:
+  const char *what() const throw()
+  {
+    return "The deck is empty.";
   }
 };
 
