@@ -44,9 +44,12 @@ void Table::print(ostream &out)
 {
   out << player1;
   out << player2;
-  out << deck;
-  out << tradeArea;
-  out << discardPile;
+  
+  out << "Deck:\t" << deck;
+  out << "\nTrade Area:\t"<<tradeArea;
+  out << "\ndiscard Pile:\t"<<discardPile;
+
+
 }
 
 ostream &operator<<(ostream &out, Table &table)

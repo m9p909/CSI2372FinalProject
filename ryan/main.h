@@ -407,5 +407,15 @@ public:
   }
 };
 
+//Helper functions for main program
+Chain_Base *makeNewChain(Card *card);
+void chainCard(Card * card,Player * currentPlayer, vector<Chain_Base *> *chains);
+void playCard(Player *currentPlayer, vector<Chain_Base *> *chains);
+bool handContainsCard(Hand hand, string str, long unsigned &index);
+bool topCardisInTradeArea(DiscardPile discardPile,TradeArea trade);
+void pauseGame();
+void runGame(string player1, string player2);
+void loadPreviousGame();
+
 // End definition for MAINPROG, the whole program.
 #endif

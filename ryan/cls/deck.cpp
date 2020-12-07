@@ -63,6 +63,6 @@ ostream &operator<<(ostream &out, Deck &deck)
 
 ostream &operator<<(ostream &out, Deck *deck)
 {
-  deck->print(out);
+  deck->print(  out);
   return out;
 }
