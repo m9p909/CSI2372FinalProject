@@ -94,11 +94,11 @@ TEST_CASE("Print a Hand")
   stringstream outOne;
   outOne << h;
   string output_string = outOne.str();
-  CHECK(output_string == "SBgSBg");
+  CHECK(output_string == "S B g S B g");
 
   // Passed as a pointer to the stream.
   stringstream outTwo;
   outTwo << &h;
   output_string = outTwo.str();
-  CHECK(output_string == "SBgSBg");
+  CHECK(output_string == "S B g S B g");
 }

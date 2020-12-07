@@ -17,12 +17,16 @@
 
 // Include libraries for all C++ files.
 #include <cstdlib>
-#include <iostream>
 #include <limits>
 #include <typeinfo>
+
+// Algorithms
 #include <random>
 #include <algorithm>
+
+// Strings and Streams
 #include <string>
+#include <iostream>
 #include <sstream>
 
 // Always use the standard namespace in this program.
@@ -129,12 +133,14 @@ class Player
 {
 private:
   vector<Chain_Base *> *chains;
-  Hand *hand;
   string name;
   int coins;
   int maxNumChains;
 
 public:
+  Hand *hand;
+
+  // Functions
   Player();
   ~Player();
   Player(string &);

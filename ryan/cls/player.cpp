@@ -97,7 +97,7 @@ void Player::print(std::ostream &out)
   {
     for (long unsigned int i = 0; i < chains->size(); i++)
     {
-      out << chains->at(i);
+      out << *chains->at(i) << endl;
     }
   }
 }

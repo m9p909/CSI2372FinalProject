@@ -54,7 +54,7 @@ void Hand::print(ostream &out)
 {
   if (!empty())
     for (long unsigned int i = 0; i < size(); i++)
-      out << at(i);
+      out << (i == 0 ? "" : " ") << at(i);
 }
 
 ostream &operator<<(ostream &out, Hand &hand)
