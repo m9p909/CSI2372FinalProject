@@ -28,6 +28,9 @@ TEST_CASE("Player getNumChains()")
   string name = "Bob";
   Player p = Player(name);
   CHECK(p.getNumChains() == 0);
+  Chain<Stink> s = Chain<Stink>();
+  Chain<Blue> b = Chain<Blue>();
+  Chain<Garden> g = Chain<Garden>();
 }
 
 TEST_CASE("Player += int")

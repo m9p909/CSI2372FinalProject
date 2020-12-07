@@ -79,3 +79,18 @@ TEST_CASE("Chain sell() function")
   }
   CHECK(gc.sell() == 3);
 }
+
+TEST_CASE("Test Chain print to stream.")
+{
+  // Create a five-element garden chain.
+  Chain<Garden> gc = Chain<Garden>();
+  Garden g = Garden();
+  for (int i = 0; i < 5; i++)
+    gc += &g;
+
+  // Print to a sstream.
+  stringstream out;
+  gc.print(out);
+  string output_string = out.str();
+  CHECK(output_string == "Garden   g g g g g");
+}

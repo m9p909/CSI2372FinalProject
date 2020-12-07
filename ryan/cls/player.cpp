@@ -1,17 +1,15 @@
 #include "../main.h"
 
-Player::Player()
+Player::Player() : coins(0), maxNumChains(2)
 {
   chains = new vector<Chain_Base *>();
   name = "Anonymous";
-  coins = 0;
 }
 
-Player::Player(string &playerName)
+Player::Player(string &playerName) : coins(0), maxNumChains(2)
 {
   chains = new vector<Chain_Base *>();
   name = playerName;
-  coins = 0;
 }
 
 Player::~Player()
@@ -37,7 +35,6 @@ int Player::getNumCoins()
 // Adds coins to the player.
 Player &Player::operator+=(int newCoins)
 {
-  cout << "Adding " << newCoins << " to player." << endl;
   coins += newCoins;
   return *this;
 }
@@ -58,12 +55,17 @@ Chain_Base &Player::operator[](int i)
   return (*x);
 }
 
-void buyThirdChain()
+void Player::buyThirdChain()
 {
   return;
 }
 
-void printHand(std::ostream &, bool)
+void Player::printHand(std::ostream &, bool)
+{
+  return;
+}
+
+void Player::addChain(Chain_Base *newChain)
 {
   return;
 }

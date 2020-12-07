@@ -52,5 +52,27 @@ int Chain<T>::sell()
   return 0;
 }
 
+// Prints the Chain name, followed by three spaces, followed by space-separated card letters.
 template <typename T>
-void Chain<T>::print(ostream &out) {}
+void Chain<T>::print(ostream &out)
+{
+  if (!cards.empty())
+  {
+    T *first = cards.at(0);
+
+    // Print the name at the start of the stream.
+    out << first->getName() << "  ";
+
+    // Print one letter-instance for each element in the chain.
+    for (long unsigned int i = 0; i < cards.size(); i++)
+    {
+      out << " ";
+      first->print(out);
+    }
+    return;
+  }
+
+  // If the chain is empty, instantiate an empty instance of the card type to print.
+  T s = T();
+  out << s.getName();
+}

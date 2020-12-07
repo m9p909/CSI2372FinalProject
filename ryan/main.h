@@ -8,8 +8,8 @@
  * CSI2372A - Fall 2020 - Final Project
  * ====================================
  * Collaborators:
- *  - Ryan Fleck   8272723
- *  - Jack Clarke  0000000 
+ *  - Jack Clarke  - - - - - 3000080674
+ *  - Ryan Fleck   - - - - - -  8272723
  */
 
 #ifndef MAINPROG
@@ -22,6 +22,8 @@
 #include <typeinfo>
 #include <random>
 #include <algorithm>
+#include <string>
+#include <sstream>
 
 // Always use the standard namespace in this program.
 using namespace std;
@@ -122,6 +124,7 @@ private:
   vector<Chain_Base *> *chains;
   string name;
   int coins;
+  int maxNumChains;
 
 public:
   Player();
@@ -136,6 +139,9 @@ public:
   Chain_Base &operator[](int i);
   void buyThirdChain();
   void printHand(ostream &, bool);
+
+  // Functions not in requirements:
+  void addChain(Chain_Base *);
 };
 
 class Table;
