@@ -18,7 +18,7 @@ int main() {
       cin >> player1Name;
       cout << "Please input a name for player 2";
       cin >> player2Name;
-      runGame(player1Name, player2Name);
+      runGame(player1Name, player2Name, cout, cin);
 
     } else if (userInput == "2") {
       cout << "Please enter the file you would like to load";
