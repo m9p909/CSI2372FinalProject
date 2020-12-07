@@ -2,11 +2,11 @@
 
 Deck::Deck(istream &a,  CardFactory *factory) {
     this->stream = &a;
-    vector<Card *> deckunshuffled = factory->getDeck();
+    Deck* deckunshuffled = factory->getDeck();
     
-    for(int i = 0; i < deckunshuffled.size(); i++){
+    for(int i = 0; i < deckunshuffled->size(); i++){
         
-        push_back(deckunshuffled[i]);
+        push_back(deckunshuffled->operator[](i));
     }
     
     
@@ -15,18 +15,42 @@ Deck::Deck(istream &a,  CardFactory *factory) {
 }
 
 Deck::Deck() {
-    CardFactory* factory = factory->getFactory();
     
-    vector<Card *> deckunshuffled = factory->getDeck();
-    
-    for(int i = 0; i < deckunshuffled.size(); i++){
-        
-        push_back(deckunshuffled[i]);
-    }
-    
-    
-    
-  shuffle(this->begin(), this->end(), default_random_engine(123));
+  Card *card;
+
+  for (int i = 0; i < 20; i++) {
+    card = new Blue();
+    push_back(card);
+  }
+  for (int i = 0; i < 18; i++) {
+    card = new Chili();
+    push_back(card);
+  }
+  for (int i = 0; i < 16; i++) {
+    card = new Stink();
+    push_back(card);
+  }
+  for (int i = 0; i < 14; i++) {
+    card = new Green();
+    push_back(card);
+  }
+  for (int i = 0; i < 12; i++) {
+    card = new Soy();
+    push_back(card);
+  }
+  for (int i = 0; i < 10; i++) {
+    card = new Black();
+    push_back(card);
+  }
+  for (int i = 0; i < 8; i++) {
+    card = new Red();
+    push_back(card);
+  }
+  for (int i = 0; i < 6; i++) {
+    card = new Garden();
+    push_back(card);
+  }
+  
 }
 
 Card *Deck::draw() {

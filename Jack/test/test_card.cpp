@@ -1,6 +1,6 @@
 #include "../main.h"
 #include "doctest.h"
-#include "../cls/Cards/Stink.cpp"
+
 
 /**
  * These test cases are from the doctest guide:
@@ -14,6 +14,7 @@ TEST_CASE("Testing the Stink card")
 {
   Stink x = Stink();
   CHECK(x.getName() == "Stink");
-  CHECK(x.getCardsPerCoin(3) == 3);
+  CHECK(x.getCardsPerCoin(3) == 7);
+
   // CHECK(x.print() == "Stink");
 }

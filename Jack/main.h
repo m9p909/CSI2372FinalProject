@@ -35,10 +35,12 @@ using namespace std;
  * Classes corresponding to the game components
  * provided in the program description.
  */
+
+class CardFactory;
 class Card {
 public:
   // Pure Virtual Functions:
-  int getCardsPerCoin(int);
+  virtual int getCardsPerCoin(int) = 0;
   virtual string getName() = 0;
   virtual void print(ostream &out) = 0;
 };
@@ -53,41 +55,36 @@ class Coins;
  * provided in the program description.
  */
 
-class CardFactory {
-  vector<Card *> deck;
-  static CardFactory *factory;
-
-private:
-  CardFactory();
-
-public:
-  static CardFactory *getFactory();
-  vector<Card *> getDeck();
-};
 
 class Chain_Base {
 public:
-  Chain_Base(istream &, const CardFactory *);
+  Chain_Base(istream &, const CardFactory *){};
+  virtual int getLength(){};
+  virtual Chain_Base &operator+=(Card *card){};
+  virtual int sell(){};
+  virtual void print(ostream &out) const{};
+  virtual string getName(){};
+  Chain_Base(){};
+  virtual ~Chain_Base(){};
+
   
-  virtual Chain_Base &operator+=(Card *card);
-  virtual int sell();
-  virtual void print(ostream &out) const;
-  virtual string getName();
-  ;
   
   
   friend ostream &operator<<(ostream &out, const Chain_Base &chain);
 };
 
-template <class T> class Chain : public Chain_Base {
+template <class T> class Chain : virtual public Chain_Base {
   istream *stream;
   T *card_example;
   vector<T *> chainV;
+  public:
   void print(ostream &out) const;
   string getName();
   Chain(istream &, const CardFactory *);
+  Chain();
   Chain &operator+=(Card *card);
   int sell();
+  int getLength();
   friend ostream &operator<<(ostream &out, const Chain &chain);
 };
 
@@ -102,6 +99,20 @@ public:
   Card *draw();
   friend ostream &operator<<(ostream &out, const Deck &chain);
 };
+
+class CardFactory {
+  Deck deck;
+  static CardFactory *factory;
+
+private:
+  CardFactory();
+
+public:
+  static CardFactory *getFactory();
+  static CardFactory *resetFactory();
+  Deck* getDeck();
+};
+
 
 class DiscardPile : public vector<Card *> {
   istream *stream;
@@ -123,6 +134,7 @@ class Hand {
 public:
   vector<Card *> cards;
   Hand(istream &, const CardFactory *);
+  Hand();
   Hand *operator+=(Card *);
   Card *play();
   Card *top();
@@ -134,7 +146,8 @@ class Player {
   string playerName;
   int numCoins;
   
-  int numChains = 2;
+  int numChains=2;
+  
   
 
 public:
@@ -188,6 +201,7 @@ class Blue : public Card {
   istream *stream;
 
 public:
+  
   int getCardsPerCoin(int);
   string getName();
   void print(ostream &out);

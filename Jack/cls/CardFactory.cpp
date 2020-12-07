@@ -1,57 +1,26 @@
 #include "../main.h"
 
-CardFactory * CardFactory::factory = nullptr;
+CardFactory *CardFactory::factory = nullptr;
 
-CardFactory::CardFactory() {
+CardFactory::CardFactory() = default;
 
-  Card *card;
+CardFactory *CardFactory::getFactory() {
 
-  for (int i = 0; i < 20; i++) {
-    card = new Blue();
-    deck.push_back(card);
-  }
-  for (int i = 0; i < 18; i++) {
-    card = new Chili();
-    deck.push_back(card);
-  }
-  for (int i = 0; i < 16; i++) {
-    card = new Stink();
-    deck.push_back(card);
-  }
-  for (int i = 0; i < 14; i++) {
-    card = new Green();
-    deck.push_back(card);
-  }
-  for (int i = 0; i < 12; i++) {
-    card = new Soy();
-    deck.push_back(card);
-  }
-  for (int i = 0; i < 10; i++) {
-    card = new Black();
-    deck.push_back(card);
-  }
-  for (int i = 0; i < 8; i++) {
-    card = new Red();
-    deck.push_back(card);
-  }
-  for (int i = 0; i < 6; i++) {
-    card = new Garden();
-    deck.push_back(card);
+  if (!CardFactory::factory) {
+    CardFactory::factory = new CardFactory();
+    return CardFactory::factory;
+  } else {
+    return CardFactory::factory;
   }
 }
 
-CardFactory *CardFactory::getFactory(){
-     
-    if(!CardFactory::factory){
-        CardFactory::factory= new CardFactory();
-        return CardFactory::factory;
-    } else{
-        return CardFactory::factory;
-    }
- }
+CardFactory *CardFactory::resetFactory() {
 
-vector<Card *> CardFactory::getDeck() {
+  CardFactory::factory = new CardFactory();
+  return CardFactory::factory;
+}
 
-  return this->deck;
- 
+Deck *CardFactory::getDeck() {
+  shuffle(deck.begin(), deck.end(), default_random_engine(123));
+  return &this->deck;
 }

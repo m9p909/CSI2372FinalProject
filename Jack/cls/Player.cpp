@@ -1,6 +1,7 @@
 #include "../main.h";
 
-Player::Player(std::string &name) { playerName = name; }
+Player::Player(std::string &name) { playerName = name;
+numCoins = 0; }
 
 Player::Player(istream &, const CardFactory *) {
   // do stuff to import from somewhere else
@@ -10,7 +11,10 @@ string Player::getName() { return playerName; }
 
 int Player::getNumCoins() { return numCoins; }
 
-Player &Player::operator+=(int coin) { numCoins += coin; }
+Player &Player::operator+=(int coin) {
+  numCoins += coin;
+  return *this;
+}
 
 int Player::getMaxNumChains() {
   return numChains; // I have no idea what this is supposed to do

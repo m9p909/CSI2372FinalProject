@@ -1,18 +1,33 @@
 #include "../main.h"
 
-class IllegalType : public exception {};
-
+class IllegalType : public exception {
+  const char* what () const throw(){
+    return "Illegal type excption";
+  }
+};
+//very useful reference https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern
 template <class T> Chain<T>::Chain(istream &, const CardFactory *) {
   // loads data
 }
 
-template <class T> Chain<T> &Chain<T>::operator+=(Card *card) {
-  if (typeid(card_example) == typeid(card)) {
-    chainV.push_back(card);
 
+
+
+template <class T> Chain<T>::Chain() = default;
+
+template <class T> Chain<T> &Chain<T>::operator+=(Card *card) {
+  if (card_example->getName() == card->getName()) {
+    chainV.push_back(static_cast<T*>(card));
+    return *this;
   } else {
+  
     throw new IllegalType;
   }
+  
+}
+
+template <class T> int Chain<T>::getLength(){
+  return chainV.size();
 }
 /*
 template <> Chain<Card> &Chain<Card>::operator+=(Card *card) {
@@ -24,10 +39,10 @@ template <> Chain<Card> &Chain<Card>::operator+=(Card *card) {
   }
   return *this;
 }
-
+*/
 
 template <class T> int Chain<T>::sell() {
-  return (card_example < -getCardsPerCoint(chainV.size()));
+  return (card_example->getCardsPerCoin(chainV.size()));
 };
 
 template<> int Chain<Card>::sell() {
@@ -38,7 +53,7 @@ template<> int Chain<Card>::sell() {
 
 
 
-
+/*
 ostream& operator<<(ostream &out, const Chain<Card> &chain) {
   out << chain.chainV.front()->getName();
   for(int i = 0; i < chain.chainV.size(); i++){
@@ -48,11 +63,13 @@ ostream& operator<<(ostream &out, const Chain<Card> &chain) {
 
 }
 */
+
+
 template <class T>  void Chain<T>::print(ostream &out) const{
   out << "Something has gone wrong";
 }
 
-template <class T>  string Chain<T>::getName(){
+template <class T> string Chain<T>::getName(){
     return "Name";
 }
 template <> string Chain<Blue>::getName(){
@@ -79,6 +96,37 @@ template <> string Chain<Soy>::getName(){
 template <> string Chain<Stink>::getName(){
   return "Stink";
 }
+
+
+//constructors;
+template <> Chain<Blue>::Chain(){
+  card_example = new Blue();
+}
+template <> Chain<Black>::Chain(){
+  card_example = new Black();
+}
+template <> Chain<Chili>::Chain(){
+  card_example = new Chili();
+}
+template <> Chain<Garden>::Chain(){
+  card_example = new Garden();
+}
+template <> Chain<Green>::Chain(){
+  card_example = new Green();
+}
+
+template <> Chain<Red>::Chain(){
+  card_example = new Red();
+}
+
+template <> Chain<Soy>::Chain(){
+  card_example = new Soy();
+}
+
+template <> Chain<Stink>::Chain(){
+  card_example = new Stink();
+}
+
 template <>  void Chain<Blue>::print(ostream &out) const{
   out << card_example->getName() << "\t";
   for (int i = 0; i < chainV.size(); i++) {

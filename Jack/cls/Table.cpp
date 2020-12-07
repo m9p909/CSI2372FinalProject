@@ -9,7 +9,7 @@ Table::Table(string player1Name, string player2Name){
   player1 = new Player(player1Name);
   player2 = new Player(player2Name);
   CardFactory* factory = factory->getFactory();
-  deck = new Deck();
+  deck = factory->getDeck();
   discardPile = new DiscardPile();
   tradeArea = new TradeArea();
 }

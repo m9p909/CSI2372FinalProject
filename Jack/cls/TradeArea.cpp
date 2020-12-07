@@ -24,6 +24,9 @@ void TradeArea::discardAll(DiscardPile &discard){
   for(auto card : cards){
     discard.push_back(card);
   }
+  for(auto card : cards){
+    cards.pop_back();
+  }
 
 }
 
