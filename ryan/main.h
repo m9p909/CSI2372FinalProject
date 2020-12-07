@@ -129,6 +129,7 @@ class Player
 {
 private:
   vector<Chain_Base *> *chains;
+  Hand *hand;
   string name;
   int coins;
   int maxNumChains;
@@ -146,6 +147,11 @@ public:
   Chain_Base &operator[](int i);
   void buyThirdChain();
   void printHand(ostream &, bool);
+
+  // Printing methods
+  void print(ostream &);
+  friend ostream &operator<<(ostream &, Player &);
+  friend ostream &operator<<(ostream &, Player *);
 
   // Functions not in requirements:
   void addChain(Chain_Base *);
@@ -296,12 +302,30 @@ public:
   }
 };
 
+class ChainAtIndexNotFound : public exception
+{
+public:
+  const char *what() const throw()
+  {
+    return "A chain does not exist at the called index.";
+  }
+};
+
 class Unimplemented : public exception
 {
 public:
   const char *what() const throw()
   {
     return "This required function has not yet been implemented.";
+  }
+};
+
+class PlayerChainsFull : public exception
+{
+public:
+  const char *what() const throw()
+  {
+    return "Cannot add new chain, maybe try purchasing a new one?";
   }
 };
 
