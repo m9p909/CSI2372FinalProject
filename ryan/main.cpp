@@ -1,6 +1,6 @@
 #include "main.h"
 
-void pauseGame();
+
 
 Chain_Base *makeNewChain(Card *card) {
   if (card->getName() == "Blue") {
@@ -23,6 +23,7 @@ Chain_Base *makeNewChain(Card *card) {
 
 
 void chainCard(Card * card,Player * currentPlayer, vector<Chain_Base *> *chains) {
+
   Card *currentPlay = card;
   bool playable = false;
   // is there a chain for top card
@@ -76,8 +77,8 @@ void playCard(Player *currentPlayer, vector<Chain_Base *> *chains) {
   
 }
 
-bool handContainsCard(Hand hand, string str, int &index) {
-  for (int i = 0; i < hand.size(); i++) {
+bool handContainsCard(Hand hand, string str, long unsigned &index) {
+  for (long unsigned i = 0; i < hand.size(); i++) {
     if (hand[i]->getName() == str) {
       index = i;
       return true;
@@ -93,6 +94,10 @@ bool topCardisInTradeArea(DiscardPile discardPile,TradeArea trade){
     }
   }
   return false;
+}
+
+void pauseGame(){
+  throw new Unimplemented;
 }
 
 void runGame(string player1, string player2) {
@@ -120,7 +125,7 @@ void runGame(string player1, string player2) {
       }
       vector<Chain_Base *> *chains = currentPlayer->chains;
       cout << "\n" << table;
-      currentPlayer->hand->operator+=(table->deck.draw());
+      currentPlayer->hand->operator+=(table->deck->draw());
       if (table->tradeArea->numCards() <= 0) {
         cout << table->tradeArea;
         cout << "\nWould you like to add the cards from the trade area to your "
@@ -183,7 +188,7 @@ void runGame(string player1, string player2) {
         bool validCardNotPicked = true;
         while (validCardNotPicked) {
           cin >> input;
-          int index;
+          long unsigned index;
           
           if (handContainsCard(*hand, input, index)) {
             hand->erase(hand->begin() + index);
@@ -192,7 +197,7 @@ void runGame(string player1, string player2) {
         }
       }
       for(int i = 0; i < 3; i++){
-        table->tradeArea->push_back(table->deck.draw());
+        table->tradeArea->push_back(table->deck->draw());
       }
       while(topCardisInTradeArea(*table->discardPile,*table->tradeArea)){
         Card* tradeCard = table->discardPile->back();
@@ -207,7 +212,7 @@ void runGame(string player1, string player2) {
         chain->print(cout);
       }
       for(auto card : *table->tradeArea){
-        card->print(cout);
+        cout << card;
         cout <<"Do you want to chain this card? y/n";
         cin >> input;
         while(input != "y" && input != "n"){
@@ -218,7 +223,7 @@ void runGame(string player1, string player2) {
         }
 
       }
-      currentPlayer->hand->push_back(table->deck.draw());
+      currentPlayer->hand->push_back(table->deck->draw());
     }
   }
 }
@@ -231,6 +236,7 @@ int main() {
   string player1Name;
   string player2Name;
   CardFactory *factory = factory->getFactory();
+  cout << new Blue();
   while (onwards) {
     cout << "Do you want to play a new game (1), or load a saved game(2)? \n";
     cin >> userInput;

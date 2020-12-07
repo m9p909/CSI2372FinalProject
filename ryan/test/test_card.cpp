@@ -51,6 +51,7 @@ TEST_CASE("Print Cards")
   // Send each to the stringstream.
   // Half are referenced by address.
   out << B << C << S << G << &s << &b << &R << &g;
+  cout << B;
 
   // Verify that the correct letters are printed.
   CHECK(out.str() == "BCSGsbRg");
