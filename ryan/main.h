@@ -23,6 +23,7 @@
 // Algorithms
 #include <random>
 #include <algorithm>
+#include <list>
 
 // Strings and Streams
 #include <string>
@@ -154,7 +155,7 @@ public:
   void buyThirdChain();
   void printHand(ostream &, bool);
 
-  // Printing methods
+  // Printing Methods
   void print(ostream &);
   friend ostream &operator<<(ostream &, Player &);
   friend ostream &operator<<(ostream &, Player *);
@@ -164,8 +165,22 @@ public:
 };
 
 class Table;
-class TradeArea;
-class Coins;
+
+class TradeArea : list<Card *>
+{
+public:
+  TradeArea() = default;
+  ~TradeArea() = default;
+  TradeArea(istream &, const CardFactory *);
+  bool legal(Card *);
+  Card *trade(string);
+  int numCards();
+
+  // Printing Methods
+  void print(ostream &);
+  friend ostream &operator<<(ostream &, TradeArea &);
+  friend ostream &operator<<(ostream &, TradeArea *);
+};
 
 /**
  * Class Implementation Definitions
