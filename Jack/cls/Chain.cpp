@@ -130,7 +130,7 @@ template <> Chain<Stink>::Chain(){
 template <>  void Chain<Blue>::print(ostream &out) const{
   out << card_example->getName() << "\t";
   for (int i = 0; i < chainV.size(); i++) {
-    out << card_example;
+    card_example->print(out);
   }
   
 };
@@ -138,37 +138,37 @@ template <>  void Chain<Blue>::print(ostream &out) const{
 template <>  void Chain<Green>::print(ostream &out) const {
   out << card_example->getName() << "\t";
   for (int i = 0; i < chainV.size(); i++) {
-    out << card_example;
+    card_example->print(out);
   }
 };
 template <>  void Chain<Chili>::print(ostream &out)  const{
   out << card_example->getName() << "\t";
   for (int i = 0; i < chainV.size(); i++) {
-    out << card_example;
+    card_example->print(out);
   }
 };
 template <>  void Chain<Garden>::print(ostream &out) const {
   out << card_example->getName() << "\t";
   for (int i = 0; i < chainV.size(); i++) {
-    out << card_example;
+    card_example->print(out);
   }
 };
 template <> void Chain<Red>::print(ostream &out) const {
   out << card_example->getName() << "\t";
   for (int i = 0; i < chainV.size(); i++) {
-    out << card_example;
+    card_example->print(out);
   }
 };
 template <>  void Chain<Soy>::print(ostream &out) const {
   out << card_example->getName() << "\t";
   for (int i = 0; i < chainV.size(); i++) {
-    out << card_example;
+    card_example->print(out);
   }
 };
 template <> void Chain<Stink>::print(ostream &out) const {
   out << card_example->getName() << "\t";
   for (int i = 0; i < chainV.size(); i++) {
-    out << card_example;
+    card_example->print(out);
   }
 };
 

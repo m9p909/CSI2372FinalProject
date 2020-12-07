@@ -21,6 +21,7 @@
 #include <exception>
 #include <iostream>
 #include <limits>
+#include <bits/stdc++.h> 
 
 // Not used yet but may be useful:
 #include <algorithm>
@@ -151,8 +152,9 @@ class Player {
   
 
 public:
-  vector<Chain_Base> chains;
+  vector<Chain_Base*> chains;
   Player(std::string &);
+  ostream& print(ostream&) const;
   Hand *hand;
   Player(istream &, const CardFactory *);
   string getName();
@@ -160,7 +162,8 @@ public:
   Player &operator+=(int);
   int getMaxNumChains();
   int getNumChains();
-  Chain_Base &operator[](int i);
+  void addChain(Chain_Base*);
+  Chain_Base* &operator[](int i);
   void buyThirdChain();
   void printHand(std::ostream &, bool);
   friend ostream &operator<<(ostream &out, const Player &player);

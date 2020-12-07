@@ -22,7 +22,7 @@ int Player::getMaxNumChains() {
 
 int Player::getNumChains() { return chains.size(); }
 
-Chain_Base &Player::operator[](int i) { return chains[i]; }
+Chain_Base* &Player::operator[](int i) { return chains[i]; }
 
 void Player::buyThirdChain() {
   if (numCoins >= 3) {
@@ -40,14 +40,23 @@ void Player::printHand(std::ostream &out, bool printEntireHand) {
     out << hand->top();
   }
 }
+//adds a chain to the player list of chains
+void Player::addChain(Chain_Base* chain){
+  chains.push_back(chain);
+}
+ostream &Player::print(ostream &out ) const{
+    out << playerName << "\t";
+  out << numCoins << " "
+      << "coins\n";
+  for (auto &value : chains) {
+    value->print(out);
+  }
+  return out;
+  
+}
 
 ostream &operator<<(ostream &out, const Player &player) {
 
-  out << player.playerName << "\t";
-  out << player.numCoins << " "
-      << "coins\n";
-  for (auto &value : player.chains) {
-    out << value;
-  }
+  player.print(out);
   return out;
 }
