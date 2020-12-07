@@ -8,6 +8,7 @@ TEST_CASE("Table Test"){
     string winString;
     CHECK(table->win(winString) == false);
     table->player2->operator+=(3);
+    CHECK(table->player2->getNumCoins() == 3);
     for(auto card : *table->deck){
         table->deck->pop_back();
     }

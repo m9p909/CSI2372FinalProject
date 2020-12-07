@@ -8,9 +8,11 @@ TEST_CASE("Player"){
     CHECK(player->getNumCoins() == 0);
     CHECK(player->getNumChains() == 0);
     CHECK(player->getMaxNumChains() == 2);
-    player = &player->operator+=(3);
-    player->buyThirdChain();
+    player->operator+=(3);
     CHECK(player->getNumCoins() == 3);
+    player->buyThirdChain();
+    CHECK(player->getNumCoins() == 0);
+    
     
     CHECK(player->getMaxNumChains() == 3);
 
