@@ -1,7 +1,7 @@
 #include "../main.h"
 
 /**
- * TradeArea ipmlementation.
+ * TradeArea implementation.
  */
 
 TradeArea::TradeArea(istream &in, const CardFactory *cf)
@@ -9,8 +9,22 @@ TradeArea::TradeArea(istream &in, const CardFactory *cf)
     throw Unimplemented();
 }
 
-bool TradeArea::legal(Card *)
+TradeArea &TradeArea::operator+=(Card *c)
 {
+    push_back(c);
+    return *this;
+}
+
+bool TradeArea::legal(Card *newCard)
+{
+    const string newCardName = newCard->getName();
+
+    // Iterate through the cards in the trade area, and if a match is found, return true.
+    for (list<Card *>::iterator it = this->begin(); it != this->end(); ++it)
+        if ((*it)->getName() == newCardName)
+            return true;
+
+    // Otherwise, return false.
     return false;
 }
 

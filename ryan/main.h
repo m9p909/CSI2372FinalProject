@@ -24,6 +24,7 @@
 #include <random>
 #include <algorithm>
 #include <list>
+#include <iterator>
 
 // Strings and Streams
 #include <string>
@@ -172,6 +173,7 @@ public:
   TradeArea() = default;
   ~TradeArea() = default;
   TradeArea(istream &, const CardFactory *);
+  TradeArea &operator+=(Card *);
   bool legal(Card *);
   Card *trade(string);
   int numCards();
