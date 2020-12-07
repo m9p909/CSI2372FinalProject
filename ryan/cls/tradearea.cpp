@@ -45,21 +45,30 @@ Card *TradeArea::trade(string removeCardName)
     throw CardNotFound();
 }
 
+// Returns the number of cards in the TradeArea.
 int TradeArea::numCards()
 {
     return size();
 }
 
 // Printing Methods
-void TradeArea::print(ostream &) {}
+
+// Prints to the provided ostream.
+void TradeArea::print(ostream &out)
+{
+    for (list<Card *>::iterator it = this->begin(); it != this->end(); ++it)
+        (*it)->print(out);
+}
 
 ostream &operator<<(ostream &out, TradeArea &ta)
 {
+    ta.print(out);
     return out;
 }
 
 ostream &operator<<(ostream &out, TradeArea *ta)
 {
+    ta->print(out);
     return out;
 }
 
