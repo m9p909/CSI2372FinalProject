@@ -92,6 +92,8 @@ public:
   Chain_Base(istream &, const CardFactory *);
   virtual Chain_Base &operator+=(Card *) = 0;
   virtual int sell() = 0;
+  virtual void print(ostream &out) = 0;
+  friend ostream &operator<<(ostream &, Chain_Base &);
 };
 
 template <typename T>

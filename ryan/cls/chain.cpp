@@ -76,3 +76,9 @@ void Chain<T>::print(ostream &out)
   T s = T();
   out << s.getName();
 }
+
+ostream &operator<<(ostream &out, Chain_Base &chain)
+{
+  chain.print(out);
+  return out;
+}

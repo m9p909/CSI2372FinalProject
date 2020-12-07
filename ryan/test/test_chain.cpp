@@ -90,7 +90,7 @@ TEST_CASE("Test Chain print to stream.")
 
   // Print to a sstream.
   stringstream out;
-  gc.print(out);
+  out << gc;
   string output_string = out.str();
   CHECK(output_string == "Garden   g g g g g");
 }
