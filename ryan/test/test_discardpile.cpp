@@ -61,7 +61,19 @@ TEST_CASE("Print a discard pile")
   d += (&g);
 
   stringstream out;
-  out << d;
+  d.print(out);
   string output_string = out.str();
   CHECK(output_string == "SBgSBg");
+
+  // Passed as a reference to the stream.
+  stringstream outOne;
+  outOne << d;
+  output_string = outOne.str();
+  CHECK(output_string == "g");
+
+  // Passed as a pointer to the stream.
+  stringstream outTwo;
+  outTwo << &d;
+  output_string = outTwo.str();
+  CHECK(output_string == "g");
 }

@@ -43,7 +43,14 @@ void DiscardPile::print(ostream &out)
 
 ostream &operator<<(ostream &out, DiscardPile &pile)
 {
-  // Call the virtual print function in the children.
-  pile.print(out);
+  if (!pile.empty())
+    out << pile.back();
+  return out;
+}
+
+ostream &operator<<(ostream &out, DiscardPile *pile)
+{
+  if (!pile->empty())
+    out << pile->back();
   return out;
 }

@@ -71,5 +71,34 @@ TEST_CASE("Peek and play a card from hand")
 
   // Picking up the card should remove it from the discardpile.
   CHECK(h.play() == &g);
+  CHECK(h.top() == &b);
   CHECK(h.size() == 2);
+}
+
+TEST_CASE("Print a Hand")
+{
+  Hand h = Hand();
+
+  // Create cards and add references to the Hand.
+  Stink s = Stink();
+  Blue b = Blue();
+  Garden g = Garden();
+  h += (&s);
+  h += (&b);
+  h += (&g);
+  h += (&s);
+  h += (&b);
+  h += (&g);
+
+  // Passed as a reference to the stream.
+  stringstream outOne;
+  outOne << h;
+  string output_string = outOne.str();
+  CHECK(output_string == "SBgSBg");
+
+  // Passed as a pointer to the stream.
+  stringstream outTwo;
+  outTwo << &h;
+  output_string = outTwo.str();
+  CHECK(output_string == "SBgSBg");
 }

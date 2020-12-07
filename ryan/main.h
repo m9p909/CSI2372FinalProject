@@ -83,6 +83,7 @@ public:
   Card *top();
   void print(ostream &);
   friend ostream &operator<<(ostream &, DiscardPile &);
+  friend ostream &operator<<(ostream &, DiscardPile *);
   void status(); // Debugging function.
 };
 
@@ -94,7 +95,7 @@ public:
   Chain_Base(istream &, const CardFactory *);
   virtual Chain_Base &operator+=(Card *) = 0;
   virtual int sell() = 0;
-  virtual void print(ostream &out) = 0;
+  virtual void print(ostream &) = 0;
   friend ostream &operator<<(ostream &, Chain_Base &);
 };
 
@@ -105,7 +106,7 @@ public:
   vector<T *> cards;
   Chain_Base &operator+=(Card *);
   int sell();
-  void print(ostream &out);
+  void print(ostream &);
 };
 
 class Hand : public vector<Card *>
@@ -118,7 +119,9 @@ public:
   Card *play();
   Card *top();
   Card *operator[](int);
-  friend ostream &operator<<(ostream &, Deck &);
+  void print(ostream &);
+  friend ostream &operator<<(ostream &, Hand &);
+  friend ostream &operator<<(ostream &, Hand *);
   void status(); // Debugging function.
 };
 

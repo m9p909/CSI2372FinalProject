@@ -13,7 +13,7 @@ Hand &Hand::operator+=(Card *c)
   return *this;
 }
 
-// Returns and removes the top card from the deck.
+// Returns but does not remove the top card from the deck.
 Card *Hand::top()
 {
   if (empty())
@@ -48,4 +48,23 @@ Card *Hand::operator[](int position)
   Card *returnedCard = at(position);
   erase(begin() + position);
   return returnedCard;
+}
+
+void Hand::print(ostream &out)
+{
+  if (!empty())
+    for (long unsigned int i = 0; i < size(); i++)
+      out << at(i);
+}
+
+ostream &operator<<(ostream &out, Hand &hand)
+{
+  hand.print(out);
+  return out;
+}
+
+ostream &operator<<(ostream &out, Hand *hand)
+{
+  hand->print(out);
+  return out;
 }
