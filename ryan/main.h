@@ -102,6 +102,9 @@ public:
   virtual Chain_Base &operator+=(Card *) = 0;
   virtual int sell() = 0;
   virtual void print(ostream &) = 0;
+  virtual Card* getExampleItem() = 0;
+  virtual int getSize() = 0;
+  
   friend ostream &operator<<(ostream &, Chain_Base &);
 };
 
@@ -113,6 +116,8 @@ public:
   Chain_Base &operator+=(Card *);
   int sell();
   void print(ostream &);
+  Card* getExampleItem();
+  int getSize();
 };
 
 class Hand : public vector<Card *>
@@ -134,12 +139,13 @@ public:
 class Player
 {
 private:
-  vector<Chain_Base *> *chains;
+  
   string name;
   int coins;
   int maxNumChains;
 
 public:
+  vector<Chain_Base *> *chains;
   Hand *hand;
 
   // Functions
@@ -155,6 +161,7 @@ public:
   Chain_Base &operator[](int i);
   void buyThirdChain();
   void printHand(ostream &, bool);
+  Chain_Base * getChain(int);
 
   // Printing Methods
   void print(ostream &);
