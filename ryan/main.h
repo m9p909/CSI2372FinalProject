@@ -180,6 +180,9 @@ public:
   void print(ostream &);
   friend ostream &operator<<(ostream &, TradeArea &);
   friend ostream &operator<<(ostream &, TradeArea *);
+
+  // Additional Methods
+  void discardAll(DiscardPile &);
 };
 
 class Table
@@ -336,6 +339,15 @@ public:
   const char *what() const throw()
   {
     return "A coin value for this number of coins was not found.";
+  }
+};
+
+class CardNotFound : public exception
+{
+public:
+  const char *what() const throw()
+  {
+    return "The requested card was not found.";
   }
 };
 

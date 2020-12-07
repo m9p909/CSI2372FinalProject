@@ -28,14 +28,26 @@ bool TradeArea::legal(Card *newCard)
     return false;
 }
 
-Card *TradeArea::trade(string)
+// Removes a card (referenced by name) from the trade-area and returns a pointer to it.
+Card *TradeArea::trade(string removeCardName)
 {
-    return new Stink();
+    // Iterate through the cards in the trade area, and if a match is found, return true.
+    for (list<Card *>::iterator it = this->begin(); it != this->end(); ++it)
+    {
+        if ((*it)->getName() == removeCardName)
+        {
+            remove(*it);
+            return *it;
+        }
+    }
+
+    // If the card is not found, raise an exception.
+    throw CardNotFound();
 }
 
 int TradeArea::numCards()
 {
-    return 0;
+    return size();
 }
 
 // Printing Methods
@@ -49,4 +61,17 @@ ostream &operator<<(ostream &out, TradeArea &ta)
 ostream &operator<<(ostream &out, TradeArea *ta)
 {
     return out;
+}
+
+// Additional Methods
+
+// Discards all cards in the trade area into the discard pile.
+void TradeArea::discardAll(DiscardPile &discard)
+{
+    // Add every card to the discard pile
+    for (list<Card *>::iterator it = this->begin(); it != this->end(); ++it)
+        discard += *it;
+
+    // Clear the list
+    clear();
 }
