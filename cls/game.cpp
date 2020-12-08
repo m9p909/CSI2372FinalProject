@@ -132,7 +132,7 @@ bool topCardisInTradeArea(DiscardPile discardPile, TradeArea trade)
   return false;
 }
 
-void pauseGame() { throw new Unimplemented; }
+void pauseGame() { throw Unimplemented(); }
 
 void runGame(string player1, string player2, ostream &outputStream,
              istream &inputStream)

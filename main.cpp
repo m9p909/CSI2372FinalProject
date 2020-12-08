@@ -2,6 +2,7 @@
 
 int main()
 {
+  // Print intro message and familiarize player with controls.
   gameStartMessage();
   copyrightMessage();
   bool onwards = true;
@@ -10,11 +11,15 @@ int main()
   string player2Name;
   CardFactory *factory = factory->getFactory();
 
+  // Loop until the player makes a choice.
   while (onwards)
   {
-    cout << "Do you want to play a new game (1), or load a saved game(2)? \n";
-    cin >> userInput;
-    if (userInput == "1")
+    logo();
+    cout << "Welcome. Would you like to play a new game?";
+    bool play_newgame = promptYesOrNo();
+
+    // If the user does not want to play a new game, prompt him to load from file.
+    if (play_newgame)
     {
       onwards = false;
       cout << "Please input a name for player 1\t";
@@ -23,16 +28,14 @@ int main()
       cin >> player2Name;
       runGame(player1Name, player2Name, cout, cin);
     }
-    else if (userInput == "2")
-    {
-      cout << "Please enter the file you would like to load";
-      cin >> userInput;
-      //load previous game function goes here
-      onwards = false;
-    }
     else
     {
-      cout << "Please input only 1 or 2\n";
-    };
+      cout << "Alright. Would you like to load an old game from file?";
+      bool load_fromfile = promptYesOrNo();
+      if (load_fromfile)
+        throw Unimplemented();
+    }
+
+    // If the player reaches this point, the game loops.
   }
 }

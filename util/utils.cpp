@@ -30,8 +30,20 @@ int copyrightMessage()
   cout << "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING" << endl;
   cout << "FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER" << endl;
   cout << "DEALINGS IN THE SOFTWARE." << endl;
-  promptEnterToContinue();
   cout << endl;
+  cout << "Do you understand the terms of use for this software?";
+  bool continue_execution = promptYesOrNo();
+  if (!continue_execution)
+    throw UserDidntUnderstandTermsOfUse();
+  return 0;
+}
+
+int logo()
+{
+  cout << endl;
+  cout << "____ ____ ____ ___  ____ ____ _  _ ____" << endl;
+  cout << "|    |__| |__/ |  \\ | __ |__| |\\/| |___" << endl;
+  cout << "|___ |  | |  \\ |__/ |__] |  | |  | |___" << endl;
   cout << endl;
   return 0;
 }
@@ -45,4 +57,20 @@ int promptEnterToContinue()
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
   cout << endl;
   return 0;
+}
+
+/**
+ * Presents the user with a prompt asking them to press enter to continue.
+ */
+bool promptYesOrNo()
+{
+  string input;
+  do
+  {
+    cout << " (Y/n) ?> ";
+    cin >> input;
+    input = tolower(input[0]);
+    cout << endl;
+  } while (input != "y" && input != "n");
+  return input == "y";
 }

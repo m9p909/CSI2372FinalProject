@@ -311,6 +311,8 @@ int hello();
 int copyrightMessage();
 int gameStartMessage();
 int promptEnterToContinue();
+int logo();
+bool promptYesOrNo();
 
 // From card.cpp
 struct valuePair
@@ -429,6 +431,15 @@ public:
   const char *what() const throw()
   {
     return "Cannot add new chain, maybe try purchasing a new one?";
+  }
+};
+
+class UserDidntUnderstandTermsOfUse : public exception
+{
+public:
+  const char *what() const throw()
+  {
+    return "The user did not accept the usage agreement.";
   }
 };
 
