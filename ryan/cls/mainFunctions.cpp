@@ -54,13 +54,13 @@ void chainCard(Card *card, Player *currentPlayer,
   if (playable == false) {
     int maxChainLength = 0;
     Chain_Base *maxChain;
-    //if there are no chains add one
-    if(currentPlayer->getNumChains() <= 0){
-       chains->push_back(makeNewChain(currentPlay));
-       (*chains)[0]->operator+=(currentPlay);
-       return;
+    // if there are no chains add one
+    if (currentPlayer->getNumChains() <= 0) {
+      chains->push_back(makeNewChain(currentPlay));
+      (*chains)[0]->operator+=(currentPlay);
+      return;
     }
-    //check if there is a chain that the card can be played on
+    // check if there is a chain that the card can be played on
     for (int i = 0; i < currentPlayer->getNumChains(); i++) {
       Chain_Base *currChain = currentPlayer->getChain(i);
       // chain length should never be greater than 4
@@ -70,7 +70,7 @@ void chainCard(Card *card, Player *currentPlayer,
         maxChain = currChain;
       }
     }
-    
+
     // sells max chain, gives money to player
     currentPlayer->operator+=(maxChain->sell());
     // removes the card chain that was sold
@@ -99,8 +99,10 @@ bool handContainsCard(Hand hand, string str, long unsigned &index) {
 }
 
 bool topCardisInTradeArea(DiscardPile discardPile, TradeArea trade) {
-  if (discardPile.empty())
+  if (discardPile.empty()){
     return false;
+  }
+    
 
   for (auto card : trade) {
     if (discardPile.top()->getName() == card->getName()) {
@@ -146,11 +148,12 @@ void runGame(string player1, string player2, ostream &outputStream,
       }
       outputStream << "It is " << currentPlayer->getName() << "'s turn";
       vector<Chain_Base *> *chains = currentPlayer->chains;
-      outputStream << "\n" << table;
+      outputStream << "\n";
+      table->prettyPrint(outputStream);
       currentPlayer->hand->operator+=(table->deck.draw());
-      
+
       if (table->tradeArea->numCards() >= 0) {
-        outputStream << table->tradeArea;
+        outputStream <<endl<<"Trade Area: "<< table->tradeArea;
         outputStream
             << "\nWould you like to add the cards from the trade area to your "
                "chains(1) or discard them?(2)\n ";
@@ -160,13 +163,18 @@ void runGame(string player1, string player2, ostream &outputStream,
         // add to chains or discard cards
         if (input == "1") {
           // add cards from table to chains
+          if((*chains).size() <= 0){
+            outputStream <<"\nYou dont have any chains to add the cards to\n!";
+            
+            table->tradeArea->discardAll(*table->discardPile);
+          }
           for (int i = 0; i < currentPlayer->getNumChains(); i++) {
             Chain_Base *chain = currentPlayer->getChain(i);
 
             if (table->tradeArea->legal(chain->getExampleItem())) {
               table->tradeArea->trade(chain->getExampleItem()->getName());
 
-              if (chain->getSize() >= 3) {
+              if (chain->getSize() >= 4) {
                 // sells curr chains if biggest chain is at max size
                 currentPlayer += chain->sell();
                 // remove the chain
@@ -179,16 +187,18 @@ void runGame(string player1, string player2, ostream &outputStream,
 
               *chain += chain->getExampleItem();
             }
+            
           }
 
         } else {
           table->tradeArea->discardAll(*table->discardPile);
         }
       }
-        // play top card
-        playCard(currentPlayer, chains);
-        outputStream << currentPlayer->getName()<<" played a card from their hand";
-      
+      // play top card
+      playCard(currentPlayer, chains);
+      outputStream << currentPlayer->getName()
+                   << " played a card from their hand";
+
       outputStream << "\nthe top card of your hand is "
                    << (*currentPlayer->hand->top()) << endl;
       outputStream << "These are your Chains: ";
@@ -223,19 +233,25 @@ void runGame(string player1, string player2, ostream &outputStream,
           long unsigned index;
 
           if (handContainsCard(*hand, input, index)) {
+            table->discardPile->push_back(hand->at(index));
             hand->erase(hand->begin() + index);
             validCardNotPicked = false;
           }
         }
       }
+      //adds 3 new cards to trade area
       for (int i = 0; i < 3; i++) {
         table->tradeArea->push_back(table->deck.draw());
       }
+      
+      
       while (topCardisInTradeArea(*table->discardPile, *table->tradeArea)) {
         Card *tradeCard = table->discardPile->back();
         table->tradeArea->push_back(tradeCard);
         table->discardPile->pop_back();
       }
+      
+      
       outputStream << "do you want any cards from the trade area to add to "
                       "your chains?\n";
       outputStream << "trade area:\n";
@@ -258,9 +274,11 @@ void runGame(string player1, string player2, ostream &outputStream,
 
         if (input == "y") {
           chainCard(card, currentPlayer, chains);
+          (void)remove(table->tradeArea->begin(),table->tradeArea->end(),card);
         }
       }
       currentPlayer->hand->push_back(table->deck.draw());
+      
     }
   }
 }

@@ -27,7 +27,7 @@ int main() {
       onwards = false;
 
     } else {
-      cout << "Please input only 1 or 2";
+      cout << "Please input only 1 or 2\n";
     };
   }
 }
