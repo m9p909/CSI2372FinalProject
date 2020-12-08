@@ -40,16 +40,27 @@ bool Table::win(string &str)
 };
 
 // Prints the contents of the table.
-void Table::print(ostream &out)
+void Table::prettyPrint(ostream &out)
 {
   out << player1;
   out << player2;
-  
+
   out << "Deck:\t" << deck;
-  out << "\nTrade Area:\t"<<tradeArea;
-  out << "\ndiscard Pile:\t"<<discardPile;
+  out << "\nTrade Area:\t" << tradeArea;
+  out << "\ndiscard Pile:\t" << discardPile;
+}
 
+// Prints the contents of the table.
+void Table::print(ostream &out)
+{
+  // Print a file header so the file looks cool.
+  out << FILE_HEADER << endl;
+  out << player1;
+  out << player2;
 
+  out << deck;
+  out << tradeArea;
+  out << discardPile;
 }
 
 ostream &operator<<(ostream &out, Table &table)
