@@ -151,6 +151,14 @@ TEST_CASE("Print Player")
   getline(out, line);
   CHECK(line == "Bob   7 coins");
 
+  // Check that the Hand is printed.
+  getline(out, line);
+  CHECK(line == HAND);
+  getline(out, line); // Hand is already tested.
+
+  getline(out, line);
+  CHECK(line == CHAINS);
+
   // Check the second line.
   getline(out, line);
   CHECK(line == "Chili   C C C C C C C C C C");
@@ -182,7 +190,7 @@ TEST_CASE("Print Player's Hand")
   // Print the player
   stringstream out;
   p.printHand(out, true);
-  CHECK(out.str() == "C G s");
+  CHECK(out.str() == "HAND\nC G s\n");
 
   // Print the player
   stringstream out2;

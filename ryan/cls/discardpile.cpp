@@ -37,8 +37,11 @@ Card *DiscardPile::pickUp()
 void DiscardPile::print(ostream &out)
 {
   if (!empty())
+  {
     for (long unsigned int i = 0; i < size(); i++)
       out << at(i);
+    out << endl;
+  }
 }
 
 ostream &operator<<(ostream &out, DiscardPile &pile)

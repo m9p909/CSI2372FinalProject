@@ -3,7 +3,6 @@
 
 Table::Table(istream &i, const CardFactory *factory)
 {
-  throw Unimplemented();
 }
 
 // Instantiate a new table with players Player1 and Player2.
@@ -45,7 +44,6 @@ void Table::prettyPrint(ostream &out)
   out << player1;
   out << player2;
 
-  out << "Deck:\t" << deck;
   out << "\nTrade Area:\t" << tradeArea;
   out << "\ndiscard Pile:\t" << discardPile;
 }
@@ -54,13 +52,31 @@ void Table::prettyPrint(ostream &out)
 void Table::print(ostream &out)
 {
   // Print a file header so the file looks cool.
-  out << FILE_HEADER << endl;
+  out << TABLE_HEADER << endl;
+
+  // Print Players
+  out << PLAYERS_HEADER << endl;
   out << player1;
   out << player2;
+  out << SECTION_END << endl;
 
+  // Print Deck
+  out << DECK_HEADER << endl;
   out << deck;
+  out << SECTION_END << endl;
+
+  // Print TradeArea
+  out << TRADE_AREA_HEADER << endl;
   out << tradeArea;
+  out << SECTION_END << endl;
+
+  // Print Discard Pile
+  out << DISCARD_PILE_HEADER << endl;
   out << discardPile;
+  out << SECTION_END << endl;
+
+  // End File
+  out << FILE_END << endl;
 }
 
 ostream &operator<<(ostream &out, Table &table)

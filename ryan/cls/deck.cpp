@@ -52,6 +52,7 @@ void Deck::print(ostream &out)
     int length = size();
     for (int i = 0; i < length; i++)
       out << (i == 0 ? "" : " ") << at(i);
+    out << endl;
   }
 }
 
@@ -63,6 +64,6 @@ ostream &operator<<(ostream &out, Deck &deck)
 
 ostream &operator<<(ostream &out, Deck *deck)
 {
-  deck->print(  out);
+  deck->print(out);
   return out;
 }

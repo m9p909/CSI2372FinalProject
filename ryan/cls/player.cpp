@@ -80,8 +80,9 @@ void Player::addChain(Chain_Base *newChain)
 }
 
 //gets the chain at index i
-Chain_Base * Player::getChain(int i){
-  Chain_Base * output = chains[0][i]; //this looks terrible, but it's getting whats at the index i from the chain that chains points to 
+Chain_Base *Player::getChain(int i)
+{
+  Chain_Base *output = chains[0][i]; //this looks terrible, but it's getting whats at the index i from the chain that chains points to
   return output;
 }
 
@@ -99,8 +100,13 @@ void Player::printHand(std::ostream &out, bool wholeHand)
 void Player::print(std::ostream &out)
 {
   out << name << "   " << coins << " coins" << endl;
+  if (!hand->empty())
+  {
+    out << hand;
+  }
   if (!chains->empty())
   {
+    out << CHAINS << endl;
     for (long unsigned int i = 0; i < chains->size(); i++)
     {
       out << *chains->at(i) << endl;

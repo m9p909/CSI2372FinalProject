@@ -63,7 +63,7 @@ TEST_CASE("Print a discard pile")
   stringstream out;
   d.print(out);
   string output_string = out.str();
-  CHECK(output_string == "SBgSBg");
+  CHECK(output_string == "SBgSBg\n");
 
   // Passed as a reference to the stream.
   stringstream outOne;
