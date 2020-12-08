@@ -17,7 +17,7 @@ Hand &Hand::operator+=(Card *c)
 Card *Hand::top()
 {
   if (empty())
-    return nullptr;
+    throw HandEmpty();
 
   Card *x = back();
   return x;
@@ -27,7 +27,7 @@ Card *Hand::top()
 Card *Hand::play()
 {
   if (empty())
-    return nullptr;
+    throw HandEmpty();
 
   Card *x = back();
   pop_back();

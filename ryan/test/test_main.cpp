@@ -14,7 +14,18 @@ TEST_CASE("Play Card"){
     }
 
     playCard(player1, player1 ->chains);
+
     CHECK(true == true);
     CHECK(player1->chains->at(0)->getExampleItem()->getName() == "Blue");
+    CHECK(player1->chains[0][0]->getSize() == 1);
     
 }
+/*
+TEST_CASE("Main game loop"){
+    stringstream input;
+    stringstream output;
+    runGame("jACK", "Ilove", input,output);
+    
+    
+}
+*/

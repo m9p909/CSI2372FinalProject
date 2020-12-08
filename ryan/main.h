@@ -380,6 +380,15 @@ public:
   }
 };
 
+class HandEmpty: public exception
+{
+public:
+  const char *what() const throw()
+  {
+    return "The deck is empty.";
+  }
+};
+
 class DeckEmpty : public exception
 {
 public:

@@ -14,9 +14,9 @@ int main() {
     cin >> userInput;
     if (userInput == "1") {
       onwards = false;
-      cout << "Please input a name for player 1";
+      cout << "Please input a name for player 1\t";
       cin >> player1Name;
-      cout << "Please input a name for player 2";
+      cout << "Please input a name for player 2\t";
       cin >> player2Name;
       runGame(player1Name, player2Name, cout, cin);
 
