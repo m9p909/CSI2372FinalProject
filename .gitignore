@@ -5,6 +5,9 @@
 game.exe
 test.exe
 
+# File output
+game.txt
+unit-test.txt
 
 
 # Github C++ Gitignore

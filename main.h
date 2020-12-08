@@ -31,6 +31,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
 // Always use the standard namespace in this program.
 using namespace std;
@@ -341,7 +342,7 @@ const int GARDEN_CARDS = 6;
 const int DECK_SIZE = BLUE_CARDS + CHILI_CARDS + STINK_CARDS + GREEN_CARDS + SOY_CARDS + BLACK_CARDS + RED_CARDS + GARDEN_CARDS;
 
 // Saving & Loading Constants
-const string TABLE_HEADER = "PERSISTANT GAME TABLE FILE V1.2 - DO NOT MODIFY";
+const string TABLE_HEADER = "PERSISTENT GAME TABLE FILE V1.2 - DO NOT MODIFY";
 const string PLAYERS_HEADER = "PLAYERS";
 const string DECK_HEADER = "DECK";
 const string TRADE_AREA_HEADER = "TRADE AREA";
@@ -395,7 +396,7 @@ public:
   }
 };
 
-class HandEmpty: public exception
+class HandEmpty : public exception
 {
 public:
   const char *what() const throw()

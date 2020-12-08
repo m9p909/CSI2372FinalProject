@@ -115,14 +115,14 @@ TEST_CASE("Reload the Table from File")
 
   REQUIRE(t.deck.size() == DECK_SIZE - 10);
 
-  cout << "Drawing Deck..." << endl;
+  // cout << "Drawing Deck..." << endl;
   // Draw half the deck.
   int draw_half_deck = DECK_SIZE / 2;
   for (int i = 0; i < draw_half_deck; i++)
     t.deck.draw();
 
   // TODO: Remove. Prints table file for debugging.
-  cout << t;
+  // cout << t;
 
   // Load the table from a stream.
   stringstream io;

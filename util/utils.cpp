@@ -8,6 +8,7 @@ int hello()
 
 int gameStartMessage()
 {
+  cout << endl;
   cout << "CSI2372-A Fall 2020 - Final Project - Clarke, Fleck" << endl;
   cout << "Welcome to our implementation of the CSI2372 final project." << endl;
   // TODO: Add more messages for TAs if required.
@@ -40,9 +41,7 @@ int copyrightMessage()
 int promptEnterToContinue()
 {
   cout << "~ Please press ENTER to continue...";
-  // TODO: Uncomment when ready to submit project, recomment for dev.
-  // cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  cout << " -> SKIP! Enable in utils.cpp" << endl;
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
   cout << endl;
   return 0;
 }
