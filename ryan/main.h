@@ -108,9 +108,9 @@ public:
   virtual Chain_Base &operator+=(Card *) = 0;
   virtual int sell() = 0;
   virtual void print(ostream &) = 0;
-  virtual Card* getExampleItem() = 0;
+  virtual Card *getExampleItem() = 0;
   virtual int getSize() = 0;
-  
+
   friend ostream &operator<<(ostream &, Chain_Base &);
 };
 
@@ -122,7 +122,7 @@ public:
   Chain_Base &operator+=(Card *);
   int sell();
   void print(ostream &);
-  Card* getExampleItem();
+  Card *getExampleItem();
   int getSize();
 };
 
@@ -145,7 +145,6 @@ public:
 class Player
 {
 private:
-  
   string name;
   int coins;
   int maxNumChains;
@@ -167,7 +166,7 @@ public:
   Chain_Base &operator[](int i);
   void buyThirdChain();
   void printHand(ostream &, bool);
-  Chain_Base * getChain(int);
+  Chain_Base *getChain(int);
 
   // Printing Methods
   void print(ostream &);
@@ -215,6 +214,7 @@ public:
   void printHand(bool);
 
   // Printing Methods
+  void prettyPrint(ostream &);
   void print(ostream &);
   friend ostream &operator<<(ostream &out, Table &table);
   friend ostream &operator<<(ostream &out, Table *table);
@@ -328,6 +328,7 @@ void addCardsToDeck(Deck *, int, T);
  * Keep the deck parameters in a set of constants.
  */
 
+// Deck Parameters
 const int BLUE_CARDS = 20;
 const int CHILI_CARDS = 18;
 const int STINK_CARDS = 16;
@@ -337,6 +338,13 @@ const int BLACK_CARDS = 10;
 const int RED_CARDS = 8;
 const int GARDEN_CARDS = 6;
 const int DECK_SIZE = BLUE_CARDS + CHILI_CARDS + STINK_CARDS + GREEN_CARDS + SOY_CARDS + BLACK_CARDS + RED_CARDS + GARDEN_CARDS;
+
+// Saving & Loading Constants
+const string FILE_HEADER = "PERSISTANT GAME TABLE FILE V1 - DO NOT MODIFY";
+const string PLAYERS_HEADER = "PLAYERS";
+const string DECK_HEADER = "DECK";
+const string TRADE_AREA_HEADER = "TRADE AREA";
+const string DISCARD_PILE_HEADER = "DISCARD PILE";
 
 /**
  * Exceptions 
@@ -418,12 +426,12 @@ public:
 
 //Helper functions for main program
 Chain_Base *makeNewChain(Card *card);
-void chainCard(Card * card,Player * currentPlayer, vector<Chain_Base *> *chains);
+void chainCard(Card *card, Player *currentPlayer, vector<Chain_Base *> *chains);
 void playCard(Player *currentPlayer, vector<Chain_Base *> *chains);
 bool handContainsCard(Hand hand, string str, long unsigned &index);
-bool topCardisInTradeArea(DiscardPile discardPile,TradeArea trade);
+bool topCardisInTradeArea(DiscardPile discardPile, TradeArea trade);
 void pauseGame();
-void runGame(string player1, string player2,ostream& outputStream, istream & inputStream);
+void runGame(string player1, string player2, ostream &outputStream, istream &inputStream);
 void loadPreviousGame();
 
 // End definition for MAINPROG, the whole program.

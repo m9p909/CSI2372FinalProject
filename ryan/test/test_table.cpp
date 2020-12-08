@@ -6,8 +6,7 @@ TEST_CASE("Instantiate a Table.")
 {
   Table();
   Table *t = new Table();
-  
-   
+
   delete t;
 
   Table test = Table("Andrew", "Mark");
@@ -21,6 +20,10 @@ TEST_CASE("Print Table with Nothing")
   stringstream out;
   out << t;
   string line;
+
+  // The first line will contain the file header.
+  getline(out, line);
+  CHECK(line == FILE_HEADER);
 
   // An empty table will only print the players, with no coins.
   getline(out, line);
