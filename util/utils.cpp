@@ -59,6 +59,44 @@ int promptEnterToContinue()
   return 0;
 }
 
+// From StackOverflow: https://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
+
+// trim from start (in place)
+static inline void ltrim(std::string &s)
+{
+  s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
+            return !std::isspace(ch);
+          }));
+}
+
+// trim from end (in place)
+static inline void rtrim(std::string &s)
+{
+  s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
+            return !std::isspace(ch);
+          }).base(),
+          s.end());
+}
+
+// Trims input and returns as a string.
+string promptString()
+{
+  string input;
+
+  // Don't accept blank input.
+  do
+  {
+    cout << " (str) ?> ";
+    cin >> input;
+    ltrim(input);
+    rtrim(input);
+  } while (input == "" || input.length() == 0);
+
+  cout << "~User typed \"" << input << "\"" << endl;
+  cout << endl;
+  return input;
+}
+
 /**
  * Presents the user with a prompt asking them to press enter to continue.
  */
@@ -70,7 +108,27 @@ bool promptYesOrNo()
     cout << " (Y/n) ?> ";
     cin >> input;
     input = tolower(input[0]);
-    cout << endl;
   } while (input != "y" && input != "n");
+  cout << "~User typed \"" << input << "\"" << endl;
+  cout << endl;
   return input == "y";
+}
+
+/**
+ * Presents the user with a prompt asking them to press enter to continue.
+ */
+bool promptAOrB()
+{
+  string input;
+  do
+  {
+    cout << " (A/B) ?> ";
+    cin >> input;
+    ltrim(input);
+    rtrim(input);
+    input = tolower(input[0]);
+  } while (input != "a" && input != "b");
+  cout << "~User typed \"" << input << "\"" << endl;
+  cout << endl;
+  return input == "a";
 }

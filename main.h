@@ -313,6 +313,8 @@ int gameStartMessage();
 int promptEnterToContinue();
 int logo();
 bool promptYesOrNo();
+bool promptAOrB();
+string promptString();
 
 // From card.cpp
 struct valuePair

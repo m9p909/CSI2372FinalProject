@@ -151,19 +151,11 @@ void runGame(string player1, string player2, ostream &outputStream,
 
   while (!table->win(winner))
   {
-    outputStream << "Would you like to pause (y/n)? \n";
-    while (input != "y" && input != "n")
-    {
-      inputStream >> input;
-      if (input == "y")
-      {
-        pauseGame();
-      }
-      else if (input == "n")
-      {
-        continue;
-      }
-    }
+    outputStream << "Would you like to pause";
+    bool pause_choice = promptYesOrNo();
+    if (pause_choice)
+      pauseGame();
+
     input = "";
     // runs for each player's turn
     for (int i = 0; i < 2; i++)
@@ -177,25 +169,19 @@ void runGame(string player1, string player2, ostream &outputStream,
       {
         currentPlayer = table->player2;
       }
-      outputStream << "It is " << currentPlayer->getName() << "'s turn";
+      outputStream << "It is " << currentPlayer->getName() << "'s turn!" << endl;
       vector<Chain_Base *> *chains = currentPlayer->chains;
-      outputStream << "\n";
       table->prettyPrint(outputStream);
       currentPlayer->hand->operator+=(table->deck.draw());
 
       if (table->tradeArea->numCards() >= 0)
       {
-        outputStream << endl
-                     << "Trade Area: " << table->tradeArea;
-        outputStream
-            << "\nWould you like to add the cards from the trade area to your "
-               "chains(1) or discard them?(2)\n ";
-        while (input != "1" && input != "2")
-        {
-          inputStream >> input;
-        }
+        outputStream << endl;
+        outputStream << "Trade Area: " << table->tradeArea;
+        outputStream << "\nWould you like to add the cards from the trade area to your chains? (A) Or discard them? (B)";
+        bool add_to_chains = promptAOrB();
         // add to chains or discard cards
-        if (input == "1")
+        if (add_to_chains)
         {
           // add cards from table to chains
           if ((*chains).size() <= 0)
