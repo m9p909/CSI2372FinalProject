@@ -9,6 +9,7 @@ int hello()
 int gameStartMessage()
 {
   cout << endl;
+  cout << endl;
   cout << "CSI2372-A Fall 2020 - Final Project - Clarke, Fleck" << endl;
   cout << "Welcome to our implementation of the CSI2372 final project." << endl;
   // TODO: Add more messages for TAs if required.

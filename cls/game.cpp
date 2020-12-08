@@ -4,6 +4,8 @@ Chain_Base *makeNewChain(Card *card)
 {
   if (card->getName() == "Blue")
     return new Chain<Blue>;
+  else if (card->getName() == "Chili")
+    return new Chain<Chili>;
   else if (card->getName() == "Black")
     return new Chain<Black>;
   else if (card->getName() == "Green")
@@ -14,8 +16,10 @@ Chain_Base *makeNewChain(Card *card)
     return new Chain<Soy>;
   else if (card->getName() == "Red")
     return new Chain<Red>;
-  else
+  else if (card->getName() == "Garden")
     return new Chain<Garden>;
+  else
+    throw CardNotFound();
 }
 
 // adds card to chain, sells chains if necessary
