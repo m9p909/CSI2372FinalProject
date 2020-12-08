@@ -25,6 +25,7 @@
 #include <algorithm>
 #include <list>
 #include <iterator>
+#include <chrono>
 
 // Strings and Streams
 #include <string>
@@ -340,11 +341,17 @@ const int GARDEN_CARDS = 6;
 const int DECK_SIZE = BLUE_CARDS + CHILI_CARDS + STINK_CARDS + GREEN_CARDS + SOY_CARDS + BLACK_CARDS + RED_CARDS + GARDEN_CARDS;
 
 // Saving & Loading Constants
-const string FILE_HEADER = "PERSISTANT GAME TABLE FILE V1 - DO NOT MODIFY";
+const string TABLE_HEADER = "PERSISTANT GAME TABLE FILE V1.2 - DO NOT MODIFY";
 const string PLAYERS_HEADER = "PLAYERS";
 const string DECK_HEADER = "DECK";
 const string TRADE_AREA_HEADER = "TRADE AREA";
 const string DISCARD_PILE_HEADER = "DISCARD PILE";
+const string SECTION_END = "END";
+const string FILE_END = "END OF GAME FILE";
+
+// Player Section Constants
+const string HAND = "HAND";
+const string CHAINS = "CHAINS";
 
 /**
  * Exceptions 

@@ -9,6 +9,7 @@ Hand::Hand(istream &, const CardFactory *)
 
 Hand &Hand::operator+=(Card *c)
 {
+  reserve(1);
   push_back(c);
   return *this;
 }
@@ -53,8 +54,12 @@ Card *Hand::operator[](int position)
 void Hand::print(ostream &out)
 {
   if (!empty())
+  {
+    out << HAND << endl; // Start with HAND identifier
     for (long unsigned int i = 0; i < size(); i++)
       out << (i == 0 ? "" : " ") << at(i);
+    out << endl; // End with EOL
+  }
 }
 
 ostream &operator<<(ostream &out, Hand &hand)

@@ -53,6 +53,6 @@ Deck CardFactory::getDeck()
 {
   // Copy vectors with assignment operator.
   Deck deckCopy = *deck;
-  shuffle(begin(deckCopy), end(deckCopy), default_random_engine());
+  shuffle(begin(deckCopy), end(deckCopy), default_random_engine(chrono::system_clock::now().time_since_epoch().count()));
   return deckCopy;
 }
