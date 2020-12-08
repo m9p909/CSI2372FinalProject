@@ -1,5 +1,7 @@
 # CSI2372 Final Project
 
+**Please read the marking instructions before proceeding.** This C++ program was written in a UNIX environment and may not run correctly on Windows.
+
 ![CI](https://github.com/JackClarkeUottawa/CSI2372FinalProject/workflows/CI/badge.svg?branch=master)
 
 Group Members
